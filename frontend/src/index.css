@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background-color: #E3B341;
+    color: #0D1117;
+  }
+  :focus-visible {
+    outline: 2px solid #E3B341;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Section index numbers used in the sidebar — the content genuinely is
+     an ordered set of pages, so a small index label is warranted here. */
+  .nav-index {
+    @apply font-mono text-xs text-muted;
+  }
+
+  .section-heading {
+    @apply font-display text-3xl md:text-4xl font-semibold text-text mb-6;
+  }
+
+  .card {
+    @apply bg-panel border border-border rounded-md p-6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

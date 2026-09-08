@@ -1,0 +1,11 @@
+# frontend
+frontend/node_modules/
+frontend/dist/
+
+# api (Express, deployed as a Vercel service)
+api/node_modules/
+.vercel
+
+# misc
+.DS_Store
+.env
