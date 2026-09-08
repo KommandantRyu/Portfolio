@@ -13,26 +13,21 @@ export default function About() {
         <div className="md:col-span-2 space-y-5 text-text/90 leading-relaxed max-w-prose">
           <img
             src="/images/profile-placeholder.svg"
-            alt="Your Name"
+            alt="Rud Gabriel Ba-oy"
             className="w-40 h-40 rounded-full object-cover border border-border mb-6"
           />
 
           <p>
-            Replace this paragraph with your own story: where you studied or
-            taught yourself to code, what pulled you toward software, and the
-            kind of problems you enjoy solving. Keep it in your own voice —
-            two or three short paragraphs is plenty.
+            An BSIT student at PHINMA-University of Iloilo, I Rud Gabriel is following this career
+            because I'm motivated to slove problems that people might have for their daily life 
+            that can be automated or made easy to do with the help of software engineering
+          </p>
+          
+          <p>
+           
           </p>
           <p>
-            Use the second paragraph to describe how you like to work: do you
-            favor small iterative releases, pairing with teammates, writing
-            tests first? Recruiters and collaborators read this section to
-            get a sense of what you'd be like on their team.
-          </p>
-          <p>
-            Close with something personal — a hobby, a side interest, or what
-            you're currently learning. It makes the page feel like a person
-            wrote it, not a template.
+            I Love Burgers and Soulslike
           </p>
         </div>
 

@@ -1,40 +1,17 @@
-/**
- * Express backend for the portfolio site.
- *
- * Routes:
- *   GET  /api/profile   -> basic profile info
- *   GET  /api/projects   -> list of projects
- *   GET  /api/skills     -> skills grouped by category
- *   POST /api/contact    -> receive a contact form submission
- *
- * Local development:
- *   cd api
- *   npm install
- *   npm start
- * Server starts on http://127.0.0.1:5000
- *
- * On Vercel, this file is picked up automatically (as part of the "api"
- * service defined in vercel.json) because it exports the Express app as
- * the module's default export — no extra config needed.
- */
-
 const express = require('express');
 const cors = require('cors');
 
 const app = express();
 app.use(express.json());
 
-// Frontend and backend share the same domain once deployed on Vercel, so
-// this mainly matters for local development or testing the API standalone.
+
 const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || '*';
 app.use(cors({ origin: ALLOWED_ORIGIN === '*' ? true : ALLOWED_ORIGIN }));
 
-// ---------------------------------------------------------------------------
-// In-memory data. Replace with a database later on.
-// ---------------------------------------------------------------------------
+
 
 const PROFILE = {
-  name: 'Your Name',
+  name: 'Rud Gabriel Ba-oy',
   role: 'Software Developer',
   tagline: "I build software that turns hard problems into simple interfaces.",
   location: 'Your City, Country',
@@ -78,9 +55,6 @@ const SKILLS = {
   tools: ['Git', 'Docker', 'Linux'],
 };
 
-// ---------------------------------------------------------------------------
-// Routes
-// ---------------------------------------------------------------------------
 
 app.get('/api/profile', (req, res) => {
   res.json(PROFILE);

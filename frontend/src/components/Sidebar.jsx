@@ -23,7 +23,7 @@ export default function Sidebar() {
     <>
       {/* Mobile top bar */}
       <div className="md:hidden flex items-center justify-between px-5 py-4 border-b border-border">
-        <span className="font-display font-semibold text-lg">Your Name</span>
+        <span className="font-display font-semibold text-lg">Rud Gabriel Ba-oy</span>
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle navigation"
@@ -55,7 +55,7 @@ export default function Sidebar() {
               alt="Your Name"
               className="w-9 h-9 rounded-full object-cover border border-border"
             />
-            <p className="font-display font-semibold text-xl text-text">Your Name</p>
+            <p className="font-display font-semibold text-xl text-text">Rud Gabriel Ba-oy</p>
           </div>
           <p className="font-mono text-xs text-muted mt-1">software developer</p>
         </div>
