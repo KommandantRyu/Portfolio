@@ -13,7 +13,7 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false)
 
   const linkClasses = ({ isActive }) =>
-    `flex items-baseline gap-3 px-4 py-3 rounded-md transition-colors ${
+    `flex items-baseline gap-3 px-6 py-3 rounded-md transition-colors ${
       isActive
         ? 'bg-panel text-amber'
         : 'text-muted hover:text-text hover:bg-panel/60'
@@ -48,7 +48,7 @@ export default function Sidebar() {
           ${open ? 'block' : 'hidden'} md:block
         `}
       >
-        <div className="hidden md:block px-6 pt-8 pb-6">
+        <div className="hidden md:block px-3 pt-8 pb-6">
           <div className="flex items-center gap-3 mb-1">
             <img
               src="/images/mypfp.jpg"
@@ -57,7 +57,7 @@ export default function Sidebar() {
             />
             <p className="font-display font-semibold text-xl text-text">Rud Gabriel Ba-oy</p>
           </div>
-          <p className="font-mono text-xs text-muted mt-1">software developer</p>
+          <p className="font-mono text-xs text-muted mt-1 text-center">software developer</p>
         </div>
 
         <nav className="flex flex-col gap-1 px-3 md:px-3 py-4 md:py-0">
