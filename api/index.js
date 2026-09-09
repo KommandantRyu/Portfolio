@@ -18,34 +18,7 @@ const PROFILE = {
 };
 
 const PROJECTS = [
-  {
-    id: 1,
-    title: 'Project One',
-    description: 'A short, plain-language description of what this project does and the problem it solves.',
-    tech: ['React', 'Express', 'PostgreSQL'],
-    link: 'https://github.com/yourusername/project-one',
-  },
-  {
-    id: 2,
-    title: 'Project Two',
-    description: 'A short, plain-language description of what this project does and the problem it solves.',
-    tech: ['Node.js', 'Docker'],
-    link: 'https://github.com/yourusername/project-two',
-  },
-  {
-    id: 3,
-    title: 'Project Three',
-    description: 'A short, plain-language description of what this project does and the problem it solves.',
-    tech: ['JavaScript'],
-    link: '',
-  },
-  {
-    id: 4,
-    title: 'Project Four',
-    description: 'A short, plain-language description of what this project does and the problem it solves.',
-    tech: ['React Native'],
-    link: '',
-  },
+  
 ];
 
 const SKILLS = {

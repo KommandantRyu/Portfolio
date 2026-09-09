@@ -12,7 +12,7 @@ export default function About() {
       <div className="grid md:grid-cols-3 gap-10">
         <div className="md:col-span-2 space-y-5 text-text/90 leading-relaxed max-w-prose">
           <img
-            src="/images/profile-placeholder.svg"
+            src="/images/mypfp.jpg"
             alt="Rud Gabriel Ba-oy"
             className="w-40 h-40 rounded-full object-cover border border-border mb-6"
           />
@@ -36,20 +36,20 @@ export default function About() {
             <p className="font-mono text-xs text-muted mb-3">experience</p>
             <ul className="space-y-3 text-sm">
               <li>
-                <p className="text-text font-medium">Job Title, Company</p>
-                <p className="text-muted">2023 — present</p>
+                <p className="text-text font-medium"></p>
+                <p className="text-muted"></p>
               </li>
               <li>
-                <p className="text-text font-medium">Job Title, Company</p>
-                <p className="text-muted">2021 — 2023</p>
+                <p className="text-text font-medium"></p>
+                <p className="text-muted"></p>
               </li>
             </ul>
           </div>
 
           <div className="card">
             <p className="font-mono text-xs text-muted mb-3">education</p>
-            <p className="text-text font-medium text-sm">Degree, School</p>
-            <p className="text-muted text-sm">Graduation year</p>
+            <p className="text-text font-medium text-sm">Information Technology, PHINMA-University of Iloilo</p>
+            <p className="text-muted text-sm">2024-Present</p>
           </div>
         </div>
       </div>

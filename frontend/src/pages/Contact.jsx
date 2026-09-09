@@ -50,7 +50,7 @@ export default function Contact() {
             value={form.name}
             onChange={handleChange}
             className="w-full bg-panel border border-border rounded-md px-4 py-3 text-text placeholder:text-muted/60 focus:border-amber outline-none"
-            placeholder="Jane Doe"
+            placeholder="Name"
           />
         </div>
 
@@ -66,7 +66,7 @@ export default function Contact() {
             value={form.email}
             onChange={handleChange}
             className="w-full bg-panel border border-border rounded-md px-4 py-3 text-text placeholder:text-muted/60 focus:border-amber outline-none"
-            placeholder="jane@example.com"
+            placeholder="name@example.com"
           />
         </div>
 
@@ -82,7 +82,7 @@ export default function Contact() {
             value={form.message}
             onChange={handleChange}
             className="w-full bg-panel border border-border rounded-md px-4 py-3 text-text placeholder:text-muted/60 focus:border-amber outline-none resize-none"
-            placeholder="What would you like to build?"
+            placeholder=""
           />
         </div>
 

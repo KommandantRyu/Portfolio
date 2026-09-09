@@ -51,8 +51,8 @@ export default function Sidebar() {
         <div className="hidden md:block px-6 pt-8 pb-6">
           <div className="flex items-center gap-3 mb-1">
             <img
-              src="/images/profile-placeholder.svg"
-              alt="Your Name"
+              src="/images/mypfp.jpg"
+              alt="Rud Gabriel"
               className="w-9 h-9 rounded-full object-cover border border-border"
             />
             <p className="font-display font-semibold text-xl text-text">Rud Gabriel Ba-oy</p>
