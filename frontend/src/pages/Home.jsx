@@ -32,15 +32,15 @@ export default function Home() {
 
       <div className="grid sm:grid-cols-3 gap-4">
         <div className="card">
-          <p className="font-display text-3xl font-semibold text-amber mb-1">3+</p>
+          <p className="font-display text-3xl font-semibold text-amber mb-1">3</p>
           <p className="text-sm text-muted">years writing production code</p>
         </div>
         <div className="card">
-          <p className="font-display text-3xl font-semibold text-amber mb-1">12</p>
+          <p className="font-display text-3xl font-semibold text-amber mb-1">3</p>
           <p className="text-sm text-muted">projects shipped end to end</p>
         </div>
         <div className="card">
-          <p className="font-display text-3xl font-semibold text-amber mb-1">2</p>
+          <p className="font-display text-3xl font-semibold text-amber mb-1">1</p>
           <p className="text-sm text-muted">languages I ship in weekly</p>
         </div>
       </div>

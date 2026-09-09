@@ -14,7 +14,7 @@ const PROFILE = {
   name: 'Rud Gabriel Ba-oy',
   role: 'Software Developer',
   tagline: "I build software that turns hard problems into simple interfaces.",
-  location: 'Your City, Country',
+  location: 'Iloilo City, Philippines',
 };
 
 const PROJECTS = [
@@ -24,7 +24,7 @@ const PROJECTS = [
 const SKILLS = {
   languages: ['JavaScript', 'TypeScript', 'SQL'],
   frontend: ['React', 'Tailwind CSS', 'Vite'],
-  backend: ['Express', 'REST APIs', 'PostgreSQL'],
+  backend: ['Express', 'Flask', 'PostgreSQL'],
   tools: ['Git', 'Docker', 'Linux'],
 };
 
