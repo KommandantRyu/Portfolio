@@ -105,13 +105,13 @@ export default function Contact() {
       </form>
 
       <div className="mt-12 flex flex-wrap gap-6 text-sm">
-        <a href="mailto:you@example.com" className="text-muted hover:text-text">
+        <a href="mailto:arthuryoshikage@gmail.com" className="text-muted hover:text-text">
           you@example.com
         </a>
-        <a href="https://github.com/yourusername" target="_blank" rel="noreferrer" className="text-muted hover:text-text">
+        <a href="https://github.com/KommandantRyu" target="_blank" rel="noreferrer" className="text-muted hover:text-text">
           GitHub
         </a>
-        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer" className="text-muted hover:text-text">
+        <a href="https://linkedin.com/in/rud-gabriel-ba-oy-1333083b8" target="_blank" rel="noreferrer" className="text-muted hover:text-text">
           LinkedIn
         </a>
       </div>
