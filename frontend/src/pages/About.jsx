@@ -13,7 +13,7 @@ export default function About() {
       <div className="grid md:grid-cols-3 gap-10">
         <div className="md:col-span-2 space-y-5 text-text/90 leading-relaxed max-w-prose">
           <img
-            src="/images/profile-placeholder.svg"
+            src="/images/mypfp.jpg"
             alt="Your Name"
             className="w-40 h-40 rounded-full object-cover border border-border mb-6"
           />

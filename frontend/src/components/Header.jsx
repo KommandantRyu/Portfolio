@@ -25,7 +25,7 @@ export default function Header() {
       <div className="max-w-4xl mx-auto px-6 md:px-8">
         <div className="flex items-center justify-between h-16">
           <NavLink to="/" className="font-display font-semibold text-lg text-text">
-            Your Name
+            Rud Gabriel
           </NavLink>
 
           {/* Desktop nav */}

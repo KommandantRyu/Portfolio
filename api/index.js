@@ -38,7 +38,7 @@ const PROFILE = {
   name: 'Rud Gabriel Ba-oy',
   role: 'Software Developer',
   tagline: "I build software that turns hard problems into simple interfaces.",
-  location: 'Your City, Country',
+  location: 'Iloilo City, Philippines',
 };
 
 const PROJECTS = [
