@@ -2,25 +2,31 @@ import { Link } from 'react-router-dom'
 
 export default function Home() {
   return (
-    <section>
-      <p className="font-mono text-xs text-teal mb-4">available for new roles</p>
+    <section className="py-12 md:py-20">
+      <img
+        src="/images/profile-placeholder.svg"
+        alt="Your Name"
+        className="w-24 h-24 rounded-full object-cover border border-border mb-8"
+      />
 
-      <h1 className="font-display text-5xl md:text-6xl font-semibold leading-[1.1] text-text mb-6 max-w-2xl">
-        I build software that turns hard problems into simple interfaces.
+      <p className="font-mono text-xs text-teal mb-4">hello, I'm</p>
+
+      <h1 className="font-display text-4xl md:text-5xl font-semibold leading-tight text-text mb-6 max-w-xl">
+        Your Name
       </h1>
 
       <p className="text-muted text-lg leading-relaxed max-w-prose mb-10">
-        I'm a software developer focused on backend systems and web apps.
-        This site walks through my background, the projects I've shipped,
-        the tools I use daily, and how to get in touch.
+        I'm a software developer. Replace this paragraph with one or two
+        sentences introducing yourself — what you do, what you're focused on
+        right now, and what brings you to this site.
       </p>
 
-      <div className="flex flex-wrap gap-4 mb-16">
+      <div className="flex flex-wrap gap-4">
         <Link
-          to="/projects"
+          to="/about"
           className="bg-amber text-ink font-medium px-6 py-3 rounded-md hover:bg-amber/90 transition-colors"
         >
-          See my projects
+          About me
         </Link>
         <Link
           to="/contact"
@@ -28,21 +34,6 @@ export default function Home() {
         >
           Get in touch
         </Link>
-      </div>
-
-      <div className="grid sm:grid-cols-3 gap-4">
-        <div className="card">
-          <p className="font-display text-3xl font-semibold text-amber mb-1">3</p>
-          <p className="text-sm text-muted">years writing code</p>
-        </div>
-        <div className="card">
-          <p className="font-display text-3xl font-semibold text-amber mb-1">3</p>
-          <p className="text-sm text-muted">projects shipped end to end</p>
-        </div>
-        <div className="card">
-          <p className="font-display text-3xl font-semibold text-amber mb-1">1</p>
-          <p className="text-sm text-muted">languages I ship in weekly</p>
-        </div>
       </div>
     </section>
   )

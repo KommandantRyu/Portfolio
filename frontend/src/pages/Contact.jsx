@@ -50,7 +50,7 @@ export default function Contact() {
             value={form.name}
             onChange={handleChange}
             className="w-full bg-panel border border-border rounded-md px-4 py-3 text-text placeholder:text-muted/60 focus:border-amber outline-none"
-            placeholder="Name"
+            placeholder="Jane Doe"
           />
         </div>
 
@@ -66,7 +66,7 @@ export default function Contact() {
             value={form.email}
             onChange={handleChange}
             className="w-full bg-panel border border-border rounded-md px-4 py-3 text-text placeholder:text-muted/60 focus:border-amber outline-none"
-            placeholder="name@example.com"
+            placeholder="jane@example.com"
           />
         </div>
 
@@ -82,7 +82,7 @@ export default function Contact() {
             value={form.message}
             onChange={handleChange}
             className="w-full bg-panel border border-border rounded-md px-4 py-3 text-text placeholder:text-muted/60 focus:border-amber outline-none resize-none"
-            placeholder=""
+            placeholder="What would you like to build?"
           />
         </div>
 
@@ -106,12 +106,12 @@ export default function Contact() {
 
       <div className="mt-12 flex flex-wrap gap-6 text-sm">
         <a href="mailto:arthuryoshikage@gmail.com" className="text-muted hover:text-text">
-          you@example.com
+          arthuryoshikage@gmail.com
         </a>
         <a href="https://github.com/KommandantRyu" target="_blank" rel="noreferrer" className="text-muted hover:text-text">
           GitHub
         </a>
-        <a href="https://linkedin.com/in/rud-gabriel-ba-oy-1333083b8" target="_blank" rel="noreferrer" className="text-muted hover:text-text">
+        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer" className="text-muted hover:text-text">
           LinkedIn
         </a>
       </div>

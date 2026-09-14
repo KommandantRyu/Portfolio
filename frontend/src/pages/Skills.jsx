@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import PageHeader from '../components/PageHeader.jsx'
+import LanguageCarousel from '../components/LanguageCarousel.jsx'
 import { apiUrl } from '../api.js'
 
 export default function Skills() {
@@ -18,6 +19,8 @@ export default function Skills() {
       })
       .catch(() => setStatus('error'))
   }, [])
+
+  const otherCategories = Object.entries(skills).filter(([category]) => category !== 'languages')
 
   return (
     <section>
@@ -39,22 +42,28 @@ export default function Skills() {
       )}
 
       {status === 'ready' && (
-        <div className="grid sm:grid-cols-2 gap-6">
-          {Object.entries(skills).map(([category, items]) => (
-            <div key={category} className="card">
-              <p className="font-mono text-xs text-muted mb-4">{category}</p>
-              <div className="flex flex-wrap gap-2">
-                {items.map((item) => (
-                  <span
-                    key={item}
-                    className="text-sm text-text bg-ink border border-border rounded px-3 py-1.5"
-                  >
-                    {item}
-                  </span>
-                ))}
+        <div className="space-y-6">
+          {skills.languages && (
+            <LanguageCarousel languages={skills.languages} />
+          )}
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            {otherCategories.map(([category, items]) => (
+              <div key={category} className="card">
+                <p className="font-mono text-xs text-muted mb-4">{category}</p>
+                <div className="flex flex-wrap gap-2">
+                  {items.map((item) => (
+                    <span
+                      key={item}
+                      className="text-sm text-text bg-ink border border-border rounded px-3 py-1.5"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </section>
