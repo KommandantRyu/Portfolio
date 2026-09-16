@@ -6,7 +6,7 @@ import About from './pages/About.jsx'
 import BeyondCode from './pages/BeyondCode.jsx'
 import Projects from './pages/Projects.jsx'
 import Skills from './pages/Skills.jsx'
-import Contact from './pages/Contact.jsx'
+
 
 export default function App() {
   return (
@@ -19,7 +19,6 @@ export default function App() {
           <Route path="/beyond-code" element={<BeyondCode />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/skills" element={<Skills />} />
-          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
       <Footer />
