@@ -19,20 +19,22 @@ export default function About() {
           />
 
           <p>
-            An BSIT student at PHINMA-University of Iloilo, I Rud Gabriel is following this 
-            career because I'm motivated to slove problems that people might have for 
-            their daily life that can be automated or made easy to do with the help of software engineering
+           As a BSIT student at PHINMA-University of Iloilo, I, Rud Gabriel, aspire to become a software developer because I enjoy using technology to create solutions to real-world problems.
+          I am drawn to this career because software development allows me to combine creativity, logical thinking, and problem-solving to build things that can be useful in people's everyday lives. 
+          I find challenging projects exciting because they give me opportunities to learn, experiment, and discover better ways of doing things. My goal is to develop software that not only works effectively 
+          but also makes tasks simpler, more convenient, and enjoyable for the people who use it.
+
           </p>
           <p>
-            Use the second paragraph to describe how you like to work: do you
-            favor small iterative releases, pairing with teammates, writing
-            tests first? Recruiters and collaborators read this section to
-            get a sense of what you'd be like on their team.
+            I am an enthusiastic and passionate software developer who enjoys creating software based on the excitement, creativity, and challenges 
+            that come with development. I see programming not only as a way to build useful applications, 
+            but also as an opportunity to solve problems, explore new ideas, and continuously improve my skills. 
+            I enjoy taking on challenging projects because they push me to think creatively and find unique solutions. 
+            For me, the most rewarding part of software development is the process of turning an idea into something functional and enjoyable, especially 
+            when I can experiment, learn from mistakes, and overcome difficult problems along the way.
           </p>
           <p>
-            Close with something personal — a hobby, a side interest, or what
-            you're currently learning. It makes the page feel like a person
-            wrote it, not a template.
+      
           </p>
 
           <Link
@@ -48,7 +50,7 @@ export default function About() {
             <p className="font-mono text-xs text-muted mb-3">experience</p>
             <ul className="space-y-3 text-sm">
               <li>
-                <p className="text-text font-medium">Intern, </p>
+                <p className="text-text font-medium">Intern,Lead Gen </p>
                 <p className="text-muted">2023 — 2023</p>
               </li>
               <li>
@@ -60,8 +62,8 @@ export default function About() {
 
           <div className="card">
             <p className="font-mono text-xs text-muted mb-3">education</p>
-            <p className="text-text font-medium text-sm">Degree, School</p>
-            <p className="text-muted text-sm">Graduation year</p>
+            <p className="text-text font-medium text-sm">BSIT, PHINMA-UI</p>
+            <p className="text-muted text-sm">2024-Present</p>
           </div>
         </div>
       </div>
