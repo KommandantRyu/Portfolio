@@ -4,16 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#0D1117',       // page background
-        panel: '#161B22',     // card / sidebar background
-        border: '#232A34',    // hairline borders
-        text: '#E6EDF3',      // primary text
-        muted: '#8B98A5',     // secondary text
-        amber: '#E3B341',     // primary accent
-        teal: '#56A69A',      // secondary accent, used sparingly
+        // Limbus Company-inspired palette: near-black backgrounds, dried-blood
+        // hairline borders, bone-white text, and a signature crimson accent.
+        ink: '#0B0908',        // page background
+        panel: '#161011',      // card / header background
+        border: '#3A1418',     // hairline borders, dried-blood red
+        text: '#EDE6DD',       // primary text, warm bone white
+        muted: '#8F7F77',      // secondary text, warm grey-brown
+        crimson: '#C8202F',    // primary accent — the signature red
+        gold: '#B99456',       // secondary accent, aged brass/gold, used sparingly
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'sans-serif'],
+        display: ['Cinzel', 'serif'],
         body: ['Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },

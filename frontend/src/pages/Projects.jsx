@@ -56,7 +56,7 @@ export default function Projects() {
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="font-mono text-xs text-teal border border-border rounded px-2 py-1"
+                    className="font-mono text-xs text-gold border border-border rounded-none px-2 py-1"
                   >
                     {tech}
                   </span>
@@ -67,7 +67,7 @@ export default function Projects() {
                   href={project.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-amber text-sm font-medium hover:underline"
+                  className="text-crimson text-sm font-medium hover:underline"
                 >
                   View project
                 </a>

@@ -6,10 +6,13 @@ export default function Home() {
       <img
         src="/images/mypfp.jpg"
         alt="Your Name"
-        className="w-24 h-24 rounded-full object-cover border border-border mb-8"
+        className="w-24 h-24 rounded-none object-cover border border-border mb-8"
       />
 
-      <p className="font-mono text-xs text-teal mb-4">hello, I'm</p>
+      <p className="font-mono text-xs text-gold tracking-widest uppercase mb-4 flex items-center gap-3">
+        <span className="w-6 h-px bg-gold/50" />
+        identity record
+      </p>
 
       <h1 className="font-display text-4xl md:text-5xl font-semibold leading-tight text-text mb-6 max-w-xl">
         Rud Gabriel Ba-oy
@@ -24,13 +27,13 @@ export default function Home() {
       <div className="flex flex-wrap gap-4">
         <Link
           to="/about"
-          className="bg-amber text-ink font-medium px-6 py-3 rounded-md hover:bg-amber/90 transition-colors"
+          className="bg-crimson text-ink font-medium px-6 py-3 rounded-none hover:bg-crimson/90 transition-colors"
         >
           About me
         </Link>
         <Link
           to="/contact"
-          className="border border-border text-text font-medium px-6 py-3 rounded-md hover:bg-panel transition-colors"
+          className="border border-border text-text font-medium px-6 py-3 rounded-none hover:bg-panel transition-colors"
         >
           Get in touch
         </Link>

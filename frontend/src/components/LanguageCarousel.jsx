@@ -9,19 +9,19 @@ export default function LanguageCarousel({ languages }) {
 
   return (
     <div className="card">
-      <p className="font-mono text-xs text-muted mb-6">languages I use</p>
+      <p className="font-mono text-xs text-muted tracking-widest uppercase mb-6">languages I use</p>
 
       <div className="flex items-center justify-between gap-4">
         <button
           onClick={() => goTo(index - 1)}
           aria-label="Previous language"
-          className="text-muted hover:text-text border border-border rounded-md w-9 h-9 flex items-center justify-center shrink-0"
+          className="text-muted hover:text-text border border-border rounded-none w-9 h-9 flex items-center justify-center shrink-0"
         >
           ‹
         </button>
 
         <div className="flex-1 text-center py-6">
-          <p className="font-display text-3xl md:text-4xl font-semibold text-amber">
+          <p className="font-display text-3xl md:text-4xl font-semibold text-crimson">
             {languages[index]}
           </p>
         </div>
@@ -29,7 +29,7 @@ export default function LanguageCarousel({ languages }) {
         <button
           onClick={() => goTo(index + 1)}
           aria-label="Next language"
-          className="text-muted hover:text-text border border-border rounded-md w-9 h-9 flex items-center justify-center shrink-0"
+          className="text-muted hover:text-text border border-border rounded-none w-9 h-9 flex items-center justify-center shrink-0"
         >
           ›
         </button>
@@ -42,7 +42,7 @@ export default function LanguageCarousel({ languages }) {
             onClick={() => goTo(i)}
             aria-label={`Show ${lang}`}
             className={`w-2 h-2 rounded-full transition-colors ${
-              i === index ? 'bg-amber' : 'bg-border'
+              i === index ? 'bg-crimson' : 'bg-border'
             }`}
           />
         ))}

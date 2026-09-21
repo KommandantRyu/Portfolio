@@ -15,7 +15,7 @@ export default function About() {
           <img
             src="/images/mypfp.jpg"
             alt="Your Name"
-            className="w-40 h-40 rounded-full object-cover border border-border mb-6"
+            className="w-40 h-40 rounded-none object-cover border border-border mb-6"
           />
 
           <p>
@@ -39,7 +39,7 @@ export default function About() {
 
           <Link
             to="/beyond-code"
-            className="inline-flex items-center gap-2 text-amber font-medium hover:underline"
+            className="inline-flex items-center gap-2 text-crimson font-medium hover:underline"
           >
             See what I do outside of coding →
           </Link>
@@ -47,7 +47,7 @@ export default function About() {
 
         <div className="space-y-6">
           <div className="card">
-            <p className="font-mono text-xs text-muted mb-3">experience</p>
+            <p className="font-mono text-xs text-muted tracking-widest uppercase mb-3">experience</p>
             <ul className="space-y-3 text-sm">
               <li>
                 <p className="text-text font-medium">Intern,Lead Gen </p>
@@ -61,7 +61,7 @@ export default function About() {
           </div>
 
           <div className="card">
-            <p className="font-mono text-xs text-muted mb-3">education</p>
+            <p className="font-mono text-xs text-muted tracking-widest uppercase mb-3">education</p>
             <p className="text-text font-medium text-sm">BSIT, PHINMA-UI</p>
             <p className="text-muted text-sm">2024-Present</p>
           </div>

@@ -14,17 +14,17 @@ export default function Header() {
   const [open, setOpen] = useState(false)
 
   const linkClasses = ({ isActive }) =>
-    `px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+    `px-3 py-2 text-xs tracking-widest uppercase font-medium transition-colors border-b-2 ${
       isActive
-        ? 'text-amber'
-        : 'text-muted hover:text-text'
+        ? 'text-crimson border-crimson'
+        : 'text-muted hover:text-text border-transparent hover:border-border'
     }`
 
   return (
     <header className="border-b border-border bg-ink sticky top-0 z-40">
       <div className="max-w-4xl mx-auto px-6 md:px-8">
         <div className="flex items-center justify-between h-16">
-          <NavLink to="/" className="font-display font-semibold text-lg text-text">
+          <NavLink to="/" className="font-display font-semibold text-lg tracking-wide text-text">
             Rud Gabriel
           </NavLink>
 

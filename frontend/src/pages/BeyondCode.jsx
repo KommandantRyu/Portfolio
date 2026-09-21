@@ -53,7 +53,7 @@ export default function BeyondCode() {
               <ul className="space-y-2">
                 {category.items.map((item) => (
                   <li key={item} className="text-muted text-sm leading-relaxed flex gap-2">
-                    <span className="text-teal">—</span>
+                    <span className="text-gold">—</span>
                     <span>{item}</span>
                   </li>
                 ))}

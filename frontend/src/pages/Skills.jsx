@@ -50,12 +50,12 @@ export default function Skills() {
           <div className="grid sm:grid-cols-2 gap-6">
             {otherCategories.map(([category, items]) => (
               <div key={category} className="card">
-                <p className="font-mono text-xs text-muted mb-4">{category}</p>
+                <p className="font-mono text-xs text-muted tracking-widest uppercase mb-4">{category}</p>
                 <div className="flex flex-wrap gap-2">
                   {items.map((item) => (
                     <span
                       key={item}
-                      className="text-sm text-text bg-ink border border-border rounded px-3 py-1.5"
+                      className="text-sm text-text bg-ink border border-border rounded-none px-3 py-1.5"
                     >
                       {item}
                     </span>
