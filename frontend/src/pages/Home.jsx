@@ -3,11 +3,16 @@ import { Link } from 'react-router-dom'
 export default function Home() {
   return (
     <section className="py-12 md:py-20">
-      <img
-        src="/images/mypfp.jpg"
-        alt="Your Name"
-        className="w-24 h-24 rounded-none object-cover border border-border mb-8"
-      />
+      <div className="id-frame w-28 mb-8">
+        <img
+          src="/images/mypfp.jpg"
+          alt="Rud Gabriel Ba-oy"
+          className="w-28 h-28 object-cover block"
+        />
+        <div className="bg-crimson text-ink font-mono text-[10px] tracking-widest uppercase text-center py-1">
+          identity
+        </div>
+      </div>
 
       <p className="font-mono text-xs text-gold tracking-widest uppercase mb-4 flex items-center gap-3">
         <span className="w-6 h-px bg-gold/50" />
@@ -24,18 +29,12 @@ export default function Home() {
         right now, and what brings you to this site.
       </p>
 
-      <div className="flex flex-wrap gap-4">
-        <Link
-          to="/about"
-          className="bg-crimson text-ink font-medium px-6 py-3 rounded-none hover:bg-crimson/90 transition-colors"
-        >
-          About me
+      <div className="flex flex-wrap gap-6">
+        <Link to="/about" className="btn-slant bg-crimson hover:bg-crimson/90 transition-colors px-6 py-3">
+          <span className="text-ink font-medium tracking-wide uppercase text-sm">About me</span>
         </Link>
-        <Link
-          to="/contact"
-          className="border border-border text-text font-medium px-6 py-3 rounded-none hover:bg-panel transition-colors"
-        >
-          Get in touch
+        <Link to="/contact" className="btn-slant border border-border hover:bg-panel transition-colors px-6 py-3">
+          <span className="text-text font-medium tracking-wide uppercase text-sm">Get in touch</span>
         </Link>
       </div>
     </section>

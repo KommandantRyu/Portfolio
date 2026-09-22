@@ -15,7 +15,7 @@ export default function LanguageCarousel({ languages }) {
         <button
           onClick={() => goTo(index - 1)}
           aria-label="Previous language"
-          className="text-muted hover:text-text border border-border rounded-none w-9 h-9 flex items-center justify-center shrink-0"
+          className="text-muted hover:text-text notch-sm border border-border w-9 h-9 flex items-center justify-center shrink-0"
         >
           ‹
         </button>
@@ -29,7 +29,7 @@ export default function LanguageCarousel({ languages }) {
         <button
           onClick={() => goTo(index + 1)}
           aria-label="Next language"
-          className="text-muted hover:text-text border border-border rounded-none w-9 h-9 flex items-center justify-center shrink-0"
+          className="text-muted hover:text-text notch-sm border border-border w-9 h-9 flex items-center justify-center shrink-0"
         >
           ›
         </button>

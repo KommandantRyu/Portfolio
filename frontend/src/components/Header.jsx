@@ -14,25 +14,38 @@ export default function Header() {
   const [open, setOpen] = useState(false)
 
   const linkClasses = ({ isActive }) =>
-    `px-3 py-2 text-xs tracking-widest uppercase font-medium transition-colors border-b-2 ${
-      isActive
-        ? 'text-crimson border-crimson'
-        : 'text-muted hover:text-text border-transparent hover:border-border'
+    `group flex items-center gap-2 px-3 py-2 text-xs tracking-widest uppercase font-medium transition-colors ${
+      isActive ? 'text-crimson' : 'text-muted hover:text-text'
+    }`
+
+  const markerClasses = (isActive) =>
+    `w-1.5 h-1.5 transition-colors ${
+      isActive ? 'bg-crimson' : 'bg-border group-hover:bg-muted'
     }`
 
   return (
-    <header className="border-b border-border bg-ink sticky top-0 z-40">
+    <header className="bg-ink sticky top-0 z-40">
       <div className="max-w-4xl mx-auto px-6 md:px-8">
         <div className="flex items-center justify-between h-16">
-          <NavLink to="/" className="font-display font-semibold text-lg tracking-wide text-text">
-            Rud Gabriel
+          <NavLink to="/" className="flex items-center gap-2">
+            <span className="notch-sm bg-crimson text-ink font-mono text-[10px] font-bold px-1.5 py-0.5">
+              RG
+            </span>
+            <span className="font-display font-semibold text-lg tracking-wide text-text">
+              Rud Gabriel
+            </span>
           </NavLink>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
             {links.map((link) => (
               <NavLink key={link.to} to={link.to} end={link.to === '/'} className={linkClasses}>
-                {link.label}
+                {({ isActive }) => (
+                  <>
+                    <span className={markerClasses(isActive)} />
+                    {link.label}
+                  </>
+                )}
               </NavLink>
             ))}
           </nav>
@@ -65,12 +78,20 @@ export default function Header() {
                 onClick={() => setOpen(false)}
                 className={linkClasses}
               >
-                {link.label}
+                {({ isActive }) => (
+                  <>
+                    <span className={markerClasses(isActive)} />
+                    {link.label}
+                  </>
+                )}
               </NavLink>
             ))}
           </nav>
         )}
       </div>
+
+      {/* Rail-line accent beneath the header, echoing Limbus's train motif */}
+      <div className="rail-track" />
     </header>
   )
 }

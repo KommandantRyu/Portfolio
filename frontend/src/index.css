@@ -25,28 +25,71 @@
     @apply font-display text-3xl md:text-4xl font-semibold text-text mb-6;
   }
 
+  /* Diagonal-cut panel, framed — the defining Limbus Company panel shape.
+     Two-layer trick: the outer box is filled with the frame color and
+     clipped to a hexagon with opposite corners cut; a 2px inset ::before
+     layer, clipped to a slightly smaller version of the same hexagon,
+     sits on top filled with the panel color — giving a true mitred
+     diagonal border with no markup changes required. */
   .card {
-    @apply relative bg-panel border border-border rounded-none p-6;
-  }
-  .card::before,
-  .card::after {
-    content: '';
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    pointer-events: none;
+    @apply relative p-6;
+    background-color: #3A1418;
+    clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
   }
   .card::before {
-    top: -1px;
-    left: -1px;
-    border-top: 2px solid #C8202F;
-    border-left: 2px solid #C8202F;
+    content: '';
+    position: absolute;
+    inset: 1.5px;
+    background-color: #161011;
+    clip-path: polygon(17px 0, 100% 0, 100% calc(100% - 17px), calc(100% - 17px) 100%, 0 100%, 0 17px);
+    z-index: 0;
   }
-  .card::after {
-    bottom: -1px;
-    right: -1px;
-    border-bottom: 2px solid #C8202F;
-    border-right: 2px solid #C8202F;
+  .card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Smaller diagonal cut for buttons, inputs, chips — no frame layer,
+     just the notch, since these already carry their own fill/border. */
+  .notch {
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  }
+  .notch-sm {
+    clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  }
+
+  /* ID-card style photo frame with a diagonal-cut corner and a nameplate
+     strip below, echoing the Sinner identity cards in Limbus's UI. */
+  .id-frame {
+    @apply relative border-2;
+    border-color: #C8202F;
+    clip-path: polygon(20px 0, 100% 0, 100% 100%, 0 100%, 0 20px);
+  }
+
+  /* Slanted CTA button — the parallelogram shape used across Limbus's
+     menu buttons. Skew the box, counter-skew the label so text stays
+     upright. */
+  .btn-slant {
+    @apply inline-flex items-center;
+    transform: skewX(-10deg);
+  }
+  .btn-slant > span {
+    display: inline-block;
+    transform: skewX(10deg);
+  }
+
+  /* Rail-line accent: a thin track with a filled marker, used under the
+     header nav to echo the train/line motif of Limbus's setting. */
+  .rail-track {
+    position: relative;
+    height: 2px;
+    background: repeating-linear-gradient(
+      90deg,
+      #3A1418 0,
+      #3A1418 6px,
+      transparent 6px,
+      transparent 12px
+    );
   }
 }
 

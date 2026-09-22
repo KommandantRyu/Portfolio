@@ -12,11 +12,16 @@ export default function About() {
 
       <div className="grid md:grid-cols-3 gap-10">
         <div className="md:col-span-2 space-y-5 text-text/90 leading-relaxed max-w-prose">
-          <img
-            src="/images/mypfp.jpg"
-            alt="Your Name"
-            className="w-40 h-40 rounded-none object-cover border border-border mb-6"
-          />
+          <div className="id-frame w-40 mb-6">
+            <img
+              src="/images/mypfp.jpg"
+              alt="Rud Gabriel Ba-oy"
+              className="w-40 h-40 object-cover block"
+            />
+            <div className="bg-crimson text-ink font-mono text-[10px] tracking-widest uppercase text-center py-1">
+              identity
+            </div>
+          </div>
 
           <p>
            As a BSIT student at PHINMA-University of Iloilo, I, Rud Gabriel, aspire to become a software developer because I enjoy using technology to create solutions to real-world problems.

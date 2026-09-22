@@ -49,7 +49,7 @@ export default function Contact() {
             required
             value={form.name}
             onChange={handleChange}
-            className="w-full bg-panel border border-border rounded-none px-4 py-3 text-text placeholder:text-muted/60 focus:border-crimson outline-none"
+            className="notch-sm w-full bg-panel border border-border px-4 py-3 text-text placeholder:text-muted/60 focus:border-crimson outline-none"
             placeholder="Jane Doe"
           />
         </div>
@@ -65,7 +65,7 @@ export default function Contact() {
             required
             value={form.email}
             onChange={handleChange}
-            className="w-full bg-panel border border-border rounded-none px-4 py-3 text-text placeholder:text-muted/60 focus:border-crimson outline-none"
+            className="notch-sm w-full bg-panel border border-border px-4 py-3 text-text placeholder:text-muted/60 focus:border-crimson outline-none"
             placeholder="jane@example.com"
           />
         </div>
@@ -81,7 +81,7 @@ export default function Contact() {
             rows={5}
             value={form.message}
             onChange={handleChange}
-            className="w-full bg-panel border border-border rounded-none px-4 py-3 text-text placeholder:text-muted/60 focus:border-crimson outline-none resize-none"
+            className="notch-sm w-full bg-panel border border-border px-4 py-3 text-text placeholder:text-muted/60 focus:border-crimson outline-none resize-none"
             placeholder="What would you like to build?"
           />
         </div>
@@ -89,9 +89,11 @@ export default function Contact() {
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="bg-crimson text-ink font-medium px-6 py-3 rounded-none hover:bg-crimson/90 transition-colors disabled:opacity-60"
+          className="btn-slant bg-crimson hover:bg-crimson/90 transition-colors px-6 py-3 disabled:opacity-60"
         >
-          {status === 'sending' ? 'Sending…' : 'Send message'}
+          <span className="text-ink font-medium tracking-wide uppercase text-sm">
+            {status === 'sending' ? 'Sending…' : 'Send message'}
+          </span>
         </button>
 
         {status === 'sent' && (

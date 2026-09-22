@@ -56,7 +56,7 @@ export default function Projects() {
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="font-mono text-xs text-gold border border-border rounded-none px-2 py-1"
+                    className="notch-sm font-mono text-xs text-gold border border-border px-2 py-1"
                   >
                     {tech}
                   </span>

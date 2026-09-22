@@ -55,7 +55,7 @@ export default function Skills() {
                   {items.map((item) => (
                     <span
                       key={item}
-                      className="text-sm text-text bg-ink border border-border rounded-none px-3 py-1.5"
+                      className="notch-sm text-sm text-text bg-ink border border-border px-3 py-1.5"
                     >
                       {item}
                     </span>
