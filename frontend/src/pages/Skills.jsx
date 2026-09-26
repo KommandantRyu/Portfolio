@@ -1,33 +1,39 @@
 import { useEffect, useState } from 'react'
 import PageHeader from '../components/PageHeader.jsx'
 import LanguageCarousel from '../components/LanguageCarousel.jsx'
+import SkillSectionCarousel from '../components/SkillSectionCarousel.jsx'
 import { apiUrl } from '../api.js'
 
 export default function Skills() {
   const [skills, setSkills] = useState({})
+  const [sections, setSections] = useState([])
   const [status, setStatus] = useState('loading')
 
   useEffect(() => {
-    fetch(apiUrl('/api/skills'))
-      .then((res) => {
+    Promise.all([
+      fetch(apiUrl('/api/skills')).then((res) => {
         if (!res.ok) throw new Error('Request failed')
         return res.json()
-      })
-      .then((data) => {
-        setSkills(data)
+      }),
+      fetch(apiUrl('/api/skill-sections')).then((res) => {
+        if (!res.ok) throw new Error('Request failed')
+        return res.json()
+      }),
+    ])
+      .then(([skillsData, sectionsData]) => {
+        setSkills(skillsData)
+        setSections(sectionsData)
         setStatus('ready')
       })
       .catch(() => setStatus('error'))
   }, [])
-
-  const otherCategories = Object.entries(skills).filter(([category]) => category !== 'languages')
 
   return (
     <section>
       <PageHeader
         eyebrow="skills"
         title="Tools I work with"
-        description="Grouped by category, served from the Express API."
+        description="Auto-cycling by domain, served from the Express API."
       />
 
       {status === 'loading' && <p className="text-muted">Loading…</p>}
@@ -47,23 +53,9 @@ export default function Skills() {
             <LanguageCarousel languages={skills.languages} />
           )}
 
-          <div className="grid sm:grid-cols-2 gap-6">
-            {otherCategories.map(([category, items]) => (
-              <div key={category} className="card">
-                <p className="font-mono text-xs text-muted tracking-widest uppercase mb-4">{category}</p>
-                <div className="flex flex-wrap gap-2">
-                  {items.map((item) => (
-                    <span
-                      key={item}
-                      className="notch-sm text-sm text-text bg-ink border border-border px-3 py-1.5"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          {sections.length > 0 && (
+            <SkillSectionCarousel sections={sections} />
+          )}
         </div>
       )}
     </section>

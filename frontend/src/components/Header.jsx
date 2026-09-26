@@ -7,7 +7,6 @@ const links = [
   { to: '/beyond-code', label: 'Beyond Code' },
   { to: '/projects', label: 'Projects' },
   { to: '/skills', label: 'Skills' },
-  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Header() {

@@ -1,0 +1,9 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#161011"/>
+  <rect x="0.5" y="0.5" width="199" height="199" fill="none" stroke="#3A1418" stroke-width="1"/>
+  <path d="M40 130 L80 90 L100 110 L140 70 L170 100 L170 150 L40 150 Z" fill="#3A1418"/>
+  <circle cx="65" cy="70" r="14" fill="#3A1418"/>
+  <text x="100" y="180" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#8F7F77" letter-spacing="1">
+    add photo
+  </text>
+</svg>

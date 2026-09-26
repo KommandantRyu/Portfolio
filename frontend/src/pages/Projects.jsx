@@ -46,9 +46,14 @@ export default function Projects() {
         <div className="grid sm:grid-cols-2 gap-6">
           {projects.map((project) => (
             <article key={project.id} className="card flex flex-col">
-              <h2 className="font-display text-xl font-semibold text-text mb-2">
-                {project.title}
-              </h2>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="tab-num">
+                  <span>{String(project.id).padStart(2, '0')}</span>
+                </span>
+                <h2 className="font-display text-xl font-semibold text-text">
+                  {project.title}
+                </h2>
+              </div>
               <p className="text-muted text-sm leading-relaxed mb-4 flex-1">
                 {project.description}
               </p>

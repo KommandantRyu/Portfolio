@@ -12,35 +12,49 @@ export default function About() {
 
       <div className="grid md:grid-cols-3 gap-10">
         <div className="md:col-span-2 space-y-5 text-text/90 leading-relaxed max-w-prose">
-          <div className="id-frame w-40 mb-6">
-            <img
-              src="/images/mypfp.jpg"
-              alt="Rud Gabriel Ba-oy"
-              className="w-40 h-40 object-cover block"
-            />
-            <div className="bg-crimson text-ink font-mono text-[10px] tracking-widest uppercase text-center py-1">
-              identity
+          <div className="sinner-card w-44 mb-6">
+            <div className="sinner-card-inner">
+              <div className="sinner-card-band">identity file</div>
+              <div className="relative">
+                <span className="sinner-card-no">NO. 01</span>
+                <img
+                  src="/images/mypfp.jpg"
+                  alt="Rud Gabriel Ba-oy"
+                  className="sinner-card-photo"
+                />
+                <span className="dog-ear" />
+              </div>
+              <div className="sinner-card-ticket" />
+              <div className="sinner-card-plate">
+                <p className="font-display text-sm font-semibold text-text leading-tight">
+                  Rud Gabriel Ba-oy
+                </p>
+                <p className="font-mono text-[10px] text-gold tracking-widest uppercase mt-1">
+                  software developer
+                </p>
+              </div>
             </div>
           </div>
 
-          <p>
-           As a BSIT student at PHINMA-University of Iloilo, I, Rud Gabriel, aspire to become a software developer because I enjoy using technology to create solutions to real-world problems.
-          I am drawn to this career because software development allows me to combine creativity, logical thinking, and problem-solving to build things that can be useful in people's everyday lives. 
-          I find challenging projects exciting because they give me opportunities to learn, experiment, and discover better ways of doing things. My goal is to develop software that not only works effectively 
-          but also makes tasks simpler, more convenient, and enjoyable for the people who use it.
+          <div className="paper-lines border border-border px-5 py-4 -mx-1">
+            <p>
+             As a BSIT student at PHINMA-University of Iloilo, I, Rud Gabriel, aspire to become a software developer because I enjoy using technology to create solutions to real-world problems.
+            I am drawn to this career because software development allows me to combine creativity, logical thinking, and problem-solving to build things that can be useful in people's everyday lives. 
+            I find challenging projects exciting because they give me opportunities to learn, experiment, and discover better ways of doing things. My goal is to develop software that not only works effectively 
+            but also makes tasks simpler, more convenient, and enjoyable for the people who use it.
 
-          </p>
-          <p>
-            I am an enthusiastic and passionate software developer who enjoys creating software based on the excitement, creativity, and challenges 
-            that come with development. I see programming not only as a way to build useful applications, 
-            but also as an opportunity to solve problems, explore new ideas, and continuously improve my skills. 
-            I enjoy taking on challenging projects because they push me to think creatively and find unique solutions. 
-            For me, the most rewarding part of software development is the process of turning an idea into something functional and enjoyable, especially 
-            when I can experiment, learn from mistakes, and overcome difficult problems along the way.
-          </p>
-          <p>
-      
-          </p>
+            </p>
+            <p>
+              I am an enthusiastic and passionate software developer who enjoys creating software based on the excitement, creativity, and challenges 
+              that come with development. I see programming not only as a way to build useful applications, 
+              but also as an opportunity to solve problems, explore new ideas, and continuously improve my skills. 
+              I enjoy taking on challenging projects because they push me to think creatively and find unique solutions. 
+              For me, the most rewarding part of software development is the process of turning an idea into something functional and enjoyable, especially 
+              when I can experiment, learn from mistakes, and overcome difficult problems along the way.
+            </p>
+          </div>
+
+          <div className="glow-divider my-2" />
 
           <Link
             to="/beyond-code"

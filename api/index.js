@@ -2,11 +2,12 @@
  * Express backend for the portfolio site.
  *
  * Routes:
- *   GET  /api/profile      -> basic profile info
- *   GET  /api/projects     -> list of projects
- *   GET  /api/skills       -> skills grouped by category
- *   GET  /api/beyond-code  -> hobby categories for the Beyond Code page
- *   POST /api/contact      -> receive a contact form submission
+ *   GET  /api/profile        -> basic profile info
+ *   GET  /api/projects       -> list of projects
+ *   GET  /api/skills         -> languages, for the language carousel
+ *   GET  /api/skill-sections -> Frontend/Backend/IoT/Tools skill-card carousel
+ *   GET  /api/beyond-code    -> hobby categories for the Beyond Code page
+ *   POST /api/contact        -> receive a contact form submission
  *
  * Local development:
  *   cd api
@@ -53,47 +54,120 @@ const PROJECTS = [
 ];
 
 const SKILLS = {
-  languages: ['JavaScript', 'TypeScript', 'SQL'],
-  frontend: ['React', 'Tailwind CSS', 'Vite'],
-  backend: ['Express', 'Flask ', 'FastAPI'],
-  tools: ['Git', 'Docker', 'Linux'],
+  languages: [
+    {
+      name: 'JavaScript',
+      icon: '📜',
+      weight: 3,
+      description:
+        'Primary language across the stack — {React} on the frontend, {Express} on the backend, same syntax the whole way through.',
+    },
+    {
+      name: 'TypeScript',
+      icon: '🔷',
+      weight: 2,
+      description:
+        'Reached for on larger codebases where {type safety} earns its keep, especially logic shared between frontend and backend.',
+    },
+    {
+      name: 'SQL',
+      icon: '🗄️',
+      weight: 2,
+      description:
+        'Querying and structuring data in {PostgreSQL} — schema design, joins, and everyday reads and writes.',
+    },
+  ],
 };
+
+// Domain sections for the Skill-card carousel — each is one "slot," styled
+// after a skill detail panel: a short technical description with the
+// actual tools called out as highlighted keywords.
+const SKILL_SECTIONS = [
+  {
+    id: 'frontend',
+    title: 'Frontend',
+    icon: '🖥️',
+    weight: 3,
+    tools: ['React', 'Tailwind CSS', 'Vite'],
+    description:
+      'Building interfaces with {React}, styled through {Tailwind CSS}, bundled and served in development with {Vite}.',
+  },
+  {
+    id: 'backend',
+    title: 'Backend',
+    icon: '⚙️',
+    weight: 3,
+    tools: ['Express', 'Flask', 'FastAPI', 'PostgreSQL'],
+    description:
+      'Serving APIs with {Express}, with {Flask} and {FastAPI} for Python-side services, backed by {PostgreSQL}.',
+  },
+  {
+    id: 'iot',
+    title: 'IoT',
+    icon: '🔌',
+    weight: 2,
+    tools: ['Arduino', 'Raspberry Pi', 'MQTT'],
+    description:
+      'Prototyping embedded systems on {Arduino} and {Raspberry Pi}, with {MQTT} for device-to-device messaging.',
+  },
+  {
+    id: 'tools',
+    title: 'Tools',
+    icon: '🛠️',
+    weight: 1,
+    tools: ['Git', 'Docker', 'Linux'],
+    description:
+      'Day-to-day workflow runs on {Git} for version control, {Docker} for environments, and {Linux}.',
+  },
+];
 
 const BEYOND_CODE = [
   {
+    slug: 'foods',
     title: 'Foods',
     emoji: '🍜',
+    accent: 'gold',
+    detailLabel: 'restaurant',
     items: [
-      'Bacon Cheese Burgers',
-      'Grilled Porks',
-      'Zarks',
+      { name: 'Bacon Cheese Burgers', image: '/images/beyond-code/placeholder.svg', detail: 'Add the restaurant or spot here' },
+      { name: 'Grilled Porks', image: '/images/beyond-code/placeholder.svg', detail: 'Add the restaurant or spot here' },
+      { name: 'Zarks', image: '/images/beyond-code/placeholder.svg', detail: 'Add the restaurant or spot here' },
     ],
   },
   {
+    slug: 'games',
     title: 'Games',
     emoji: '🎮',
+    accent: 'crimson',
+    detailLabel: 'achievement',
     items: [
-      "Limbus Company",
-      'Dark Souls 2: Scholar of The First Sin',
-      'Psychological Horror',
+      { name: 'Limbus Company', image: '/images/beyond-code/placeholder.svg', detail: 'Add an achievement or highlight here' },
+      { name: 'Dark Souls 2: Scholar of The First Sin', image: '/images/beyond-code/placeholder.svg', detail: 'Add an achievement or highlight here' },
+      { name: 'Psychological Horror', image: '/images/beyond-code/placeholder.svg', detail: 'Add an achievement or highlight here' },
     ],
   },
   {
+    slug: 'shows',
     title: 'Shows',
     emoji: '🎬',
+    accent: 'emerald',
+    detailLabel: 'why I like it',
     items: [
-      "The Avengers Assemble",
-      'Iron Man',
-      "Panty, Stockings And Garterbelt",
+      { name: 'The Avengers Assemble', image: '/images/beyond-code/placeholder.svg', detail: 'Add a short note here' },
+      { name: 'Iron Man', image: '/images/beyond-code/placeholder.svg', detail: 'Add a short note here' },
+      { name: 'Panty, Stocking & Garterbelt', image: '/images/beyond-code/placeholder.svg', detail: 'Add a short note here' },
     ],
   },
   {
+    slug: 'other-hobbies',
     title: 'Other hobbies',
     emoji: '📖',
+    accent: 'border',
+    detailLabel: 'specifics',
     items: [
-      'Fencing',
-      'Writing',
-      "Reading",
+      { name: 'Fencing', image: '/images/beyond-code/placeholder.svg', detail: 'Add specifics — weapon, club, level' },
+      { name: 'Writing', image: '/images/beyond-code/placeholder.svg', detail: 'Add specifics — genre, project' },
+      { name: 'Reading', image: '/images/beyond-code/placeholder.svg', detail: 'Add specifics — favorite genre or authors' },
     ],
   },
 ];
@@ -112,6 +186,10 @@ app.get('/api/projects', (req, res) => {
 
 app.get('/api/skills', (req, res) => {
   res.json(SKILLS);
+});
+
+app.get('/api/skill-sections', (req, res) => {
+  res.json(SKILL_SECTIONS);
 });
 
 app.get('/api/beyond-code', (req, res) => {
