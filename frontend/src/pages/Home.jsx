@@ -90,9 +90,7 @@ export default function Home() {
               Rud Gabriel Ba-oy
             </p>
             <p className="text-text text-base md:text-lg italic leading-relaxed max-w-prose">
-              "I'm a software developer. Replace this line with a short,
-              in-character intro — what you do, what you're focused on right
-              now, and what brings you to this site."
+               "An aspiring software developer."
             </p>
           </div>
         </div>
