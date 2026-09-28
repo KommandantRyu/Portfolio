@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import Gear from './Gear.jsx'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -30,6 +31,7 @@ export default function Header() {
             <span className="notch-sm bg-crimson text-ink font-mono text-[10px] font-bold px-1.5 py-0.5">
               RG
             </span>
+            <Gear size={14} className="text-gold/60" spin spinDuration="12s" />
             <span className="font-display font-semibold text-lg tracking-wide text-text">
               Rud Gabriel
             </span>
@@ -90,7 +92,13 @@ export default function Header() {
       </div>
 
       {/* Rail-line accent beneath the header, echoing Limbus's train motif */}
-      <div className="rail-track" />
+      <div className="pipe" />
+      {/* Steam venting from a pipe flange (wide screens only, to stay clear of the logo) */}
+      <div aria-hidden="true" className="hidden xl:block absolute left-[142px] bottom-[10px] w-6 h-6 pointer-events-none">
+        <span className="steam-puff left-1" style={{ animationDelay: '0s' }} />
+        <span className="steam-puff left-3" style={{ animationDelay: '1.1s' }} />
+        <span className="steam-puff left-0" style={{ animationDelay: '2.2s' }} />
+      </div>
     </header>
   )
 }

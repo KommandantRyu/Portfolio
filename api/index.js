@@ -4,8 +4,7 @@
  * Routes:
  *   GET  /api/profile        -> basic profile info
  *   GET  /api/projects       -> list of projects
- *   GET  /api/skills         -> languages, for the language carousel
- *   GET  /api/skill-sections -> Frontend/Backend/IoT/Tools skill-card carousel
+ *   GET  /api/skill-sections -> Languages/Frontend/Backend/IoT/Tools skill panel
  *   GET  /api/beyond-code    -> hobby categories for the Beyond Code page
  *   POST /api/contact        -> receive a contact form submission
  *
@@ -53,71 +52,83 @@ const PROJECTS = [
 
 ];
 
-const SKILLS = {
-  languages: [
-    {
-      name: 'JavaScript',
-      icon: '📜',
-      weight: 3,
-      description:
-        'Primary language across the stack — {React} on the frontend, {Express} on the backend, same syntax the whole way through.',
-    },
-    {
-      name: 'TypeScript',
-      icon: '🔷',
-      weight: 2,
-      description:
-        'Reached for on larger codebases where {type safety} earns its keep, especially logic shared between frontend and backend.',
-    },
-    {
-      name: 'SQL',
-      icon: '🗄️',
-      weight: 2,
-      description:
-        'Querying and structuring data in {PostgreSQL} — schema design, joins, and everyday reads and writes.',
-    },
-  ],
-};
-
-// Domain sections for the Skill-card carousel — each is one "slot," styled
-// after a skill detail panel: a short technical description with the
-// actual tools called out as highlighted keywords.
+// Skill sections for the auto-cycling skill panel. Each section is one
+// "slot": a short description (tools wrapped in {braces} render as
+// highlighted keywords) plus a list of entries. `coins` (1-3) marks how
+// central each tool is to my day-to-day work — placeholder values, edit freely.
 const SKILL_SECTIONS = [
+  {
+    id: 'languages',
+    title: 'Languages',
+    icon: '📜',
+    description:
+      'The languages under every layer of the stack: {JavaScript}, {TypeScript}, and {SQL}.',
+    entries: [
+      {
+        name: 'JavaScript',
+        coins: 3,
+        note: 'Primary language across the stack — {React} on the frontend, {Express} on the backend, same syntax the whole way through.',
+      },
+      {
+        name: 'TypeScript',
+        coins: 2,
+        note: 'Reached for on larger codebases where {type safety} earns its keep, especially logic shared between frontend and backend.',
+      },
+      {
+        name: 'SQL',
+        coins: 2,
+        note: 'Querying and structuring data in {PostgreSQL} — schema design, joins, and everyday reads and writes.',
+      },
+    ],
+  },
   {
     id: 'frontend',
     title: 'Frontend',
     icon: '🖥️',
-    weight: 3,
-    tools: ['React', 'Tailwind CSS', 'Vite'],
     description:
       'Building interfaces with {React}, styled through {Tailwind CSS}, bundled and served in development with {Vite}.',
+    entries: [
+      { name: 'React', coins: 3, note: 'Component-driven interfaces and client-side routing.' },
+      { name: 'Tailwind CSS', coins: 3, note: 'Utility-first styling, with custom design tokens.' },
+      { name: 'Vite', coins: 2, note: 'Dev server and production bundler.' },
+    ],
   },
   {
     id: 'backend',
     title: 'Backend',
     icon: '⚙️',
-    weight: 3,
-    tools: ['Express', 'Flask', 'FastAPI', 'PostgreSQL'],
     description:
       'Serving APIs with {Express}, with {Flask} and {FastAPI} for Python-side services, backed by {PostgreSQL}.',
+    entries: [
+      { name: 'Express', coins: 3, note: 'REST APIs on Node.js.' },
+      { name: 'Flask', coins: 2, note: 'Lightweight Python web services.' },
+      { name: 'FastAPI', coins: 2, note: 'Async Python APIs with typed request handling.' },
+      { name: 'PostgreSQL', coins: 2, note: 'Relational data storage.' },
+    ],
   },
   {
     id: 'iot',
     title: 'IoT',
     icon: '🔌',
-    weight: 2,
-    tools: ['Arduino', 'Raspberry Pi', 'MQTT'],
     description:
       'Prototyping embedded systems on {Arduino} and {Raspberry Pi}, with {MQTT} for device-to-device messaging.',
+    entries: [
+      { name: 'Arduino', coins: 2, note: 'Microcontroller prototyping and sensor input.' },
+      { name: 'Raspberry Pi', coins: 2, note: 'Single-board computing for gateways and edge tasks.' },
+      { name: 'MQTT', coins: 1, note: 'Lightweight publish/subscribe messaging between devices.' },
+    ],
   },
   {
     id: 'tools',
     title: 'Tools',
     icon: '🛠️',
-    weight: 1,
-    tools: ['Git', 'Docker', 'Linux'],
     description:
       'Day-to-day workflow runs on {Git} for version control, {Docker} for environments, and {Linux}.',
+    entries: [
+      { name: 'Git', coins: 3, note: 'Version control and collaboration.' },
+      { name: 'Docker', coins: 2, note: 'Reproducible development environments.' },
+      { name: 'Linux', coins: 2, note: 'Daily-driver command line and servers.' },
+    ],
   },
 ];
 
@@ -126,7 +137,7 @@ const BEYOND_CODE = [
     slug: 'foods',
     title: 'Foods',
     emoji: '🍜',
-    accent: 'gold',
+    sin: 'gluttony',
     detailLabel: 'restaurant',
     items: [
       { name: 'Bacon Cheese Burgers', image: '/images/beyond-code/placeholder.svg', detail: 'Add the restaurant or spot here' },
@@ -138,7 +149,7 @@ const BEYOND_CODE = [
     slug: 'games',
     title: 'Games',
     emoji: '🎮',
-    accent: 'crimson',
+    sin: 'wrath',
     detailLabel: 'achievement',
     items: [
       { name: 'Limbus Company', image: '/images/beyond-code/placeholder.svg', detail: 'Add an achievement or highlight here' },
@@ -150,7 +161,7 @@ const BEYOND_CODE = [
     slug: 'shows',
     title: 'Shows',
     emoji: '🎬',
-    accent: 'emerald',
+    sin: 'sloth',
     detailLabel: 'why I like it',
     items: [
       { name: 'The Avengers Assemble', image: '/images/beyond-code/placeholder.svg', detail: 'Add a short note here' },
@@ -162,7 +173,7 @@ const BEYOND_CODE = [
     slug: 'other-hobbies',
     title: 'Other hobbies',
     emoji: '📖',
-    accent: 'border',
+    sin: 'pride',
     detailLabel: 'specifics',
     items: [
       { name: 'Fencing', image: '/images/beyond-code/placeholder.svg', detail: 'Add specifics — weapon, club, level' },
@@ -182,10 +193,6 @@ app.get('/api/profile', (req, res) => {
 
 app.get('/api/projects', (req, res) => {
   res.json(PROJECTS);
-});
-
-app.get('/api/skills', (req, res) => {
-  res.json(SKILLS);
 });
 
 app.get('/api/skill-sections', (req, res) => {

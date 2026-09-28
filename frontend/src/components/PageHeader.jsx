@@ -13,6 +13,7 @@ export default function PageHeader({ eyebrow, title, description }) {
       {description && (
         <p className="text-muted text-lg leading-relaxed">{description}</p>
       )}
+      <div className="pipe-divider mt-8" aria-hidden="true" />
     </header>
   )
 }

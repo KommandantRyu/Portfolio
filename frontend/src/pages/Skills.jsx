@@ -1,28 +1,20 @@
 import { useEffect, useState } from 'react'
 import PageHeader from '../components/PageHeader.jsx'
-import LanguageCarousel from '../components/LanguageCarousel.jsx'
 import SkillSectionCarousel from '../components/SkillSectionCarousel.jsx'
 import { apiUrl } from '../api.js'
 
 export default function Skills() {
-  const [skills, setSkills] = useState({})
   const [sections, setSections] = useState([])
-  const [status, setStatus] = useState('loading')
+  const [status, setStatus] = useState('loading') // loading | ready | error
 
   useEffect(() => {
-    Promise.all([
-      fetch(apiUrl('/api/skills')).then((res) => {
+    fetch(apiUrl('/api/skill-sections'))
+      .then((res) => {
         if (!res.ok) throw new Error('Request failed')
         return res.json()
-      }),
-      fetch(apiUrl('/api/skill-sections')).then((res) => {
-        if (!res.ok) throw new Error('Request failed')
-        return res.json()
-      }),
-    ])
-      .then(([skillsData, sectionsData]) => {
-        setSkills(skillsData)
-        setSections(sectionsData)
+      })
+      .then((data) => {
+        setSections(data)
         setStatus('ready')
       })
       .catch(() => setStatus('error'))
@@ -33,7 +25,7 @@ export default function Skills() {
       <PageHeader
         eyebrow="skills"
         title="Tools I work with"
-        description="Auto-cycling by domain, served from the Express API."
+        description="Five sections, auto-cycling — coins mark how central each tool is to my work."
       />
 
       {status === 'loading' && <p className="text-muted">Loading…</p>}
@@ -47,16 +39,8 @@ export default function Skills() {
         </div>
       )}
 
-      {status === 'ready' && (
-        <div className="space-y-6">
-          {skills.languages && (
-            <LanguageCarousel languages={skills.languages} />
-          )}
-
-          {sections.length > 0 && (
-            <SkillSectionCarousel sections={sections} />
-          )}
-        </div>
+      {status === 'ready' && sections.length > 0 && (
+        <SkillSectionCarousel sections={sections} />
       )}
     </section>
   )
