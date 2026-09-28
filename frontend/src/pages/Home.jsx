@@ -75,7 +75,7 @@ export default function Home() {
                 title="GitHub"
                 className="notch-sm w-8 h-8 bg-ink/70 border border-border hover:border-gold flex items-center justify-center text-xs transition-colors"
               >
-                gh
+                
               </a>
               <a
                 href="https://linkedin.com/in/yourusername"
@@ -95,9 +95,7 @@ export default function Home() {
               Rud Gabriel Ba-oy
             </p>
             <p className="text-text text-base md:text-lg italic leading-relaxed max-w-prose">
-              "I'm a software developer. Replace this line with a short,
-              in-character intro — what you do, what you're focused on right
-              now, and what brings you to this site."
+              "Magic is believing in yourself, if you can do that, you can make anything happen."
             </p>
           </div>
         </div>
