@@ -69,7 +69,7 @@ export default function Home() {
                 ✉
               </a>
               <a
-                href="https://github.com/Kommandant-Ryu"
+                href="https://github.com/KommandantRyu"
                 target="_blank"
                 rel="noreferrer"
                 title="GitHub"
