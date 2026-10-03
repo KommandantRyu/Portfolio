@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import PageHeader from '../components/PageHeader.jsx'
+import Chain from '../components/Chain.jsx'
 
 export default function About() {
   return (
@@ -21,6 +22,13 @@ export default function About() {
                   src="/images/mypfp.jpg"
                   alt="Rud Gabriel Ba-oy"
                   className="sinner-card-photo"
+                />
+                <Chain
+                  size={18}
+                  links={5}
+                  sway
+                  swayDuration="6s"
+                  className="absolute top-1 right-1 text-gold/80 drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)] rotate-[35deg] origin-top-right z-10"
                 />
                 <span className="dog-ear" />
               </div>

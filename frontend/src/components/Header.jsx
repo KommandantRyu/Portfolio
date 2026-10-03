@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import Gear from './Gear.jsx'
+import Chain from './Chain.jsx'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -31,7 +31,7 @@ export default function Header() {
             <span className="notch-sm bg-crimson text-ink font-mono text-[10px] font-bold px-1.5 py-0.5">
               RG
             </span>
-            <Gear size={14} className="text-gold/60" spin spinDuration="12s" />
+            <Chain size={14} links={2} sway swayDuration="4s" className="text-gold/60" />
             <span className="font-display font-semibold text-lg tracking-wide text-text">
               Rud Gabriel
             </span>

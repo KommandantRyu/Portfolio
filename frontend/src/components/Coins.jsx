@@ -1,15 +1,20 @@
-// Row of gold coin pips — the coin count shown on each skill (1-3).
-export default function Coins({ count = 1, size = 'md', className = '' }) {
-  const n = Math.max(0, Math.min(5, count))
+// Row of gold coin pips, painted entirely in CSS from a --coins custom
+// property. The count for each tool/section lives in index.css (search
+// "COIN COUNTS") keyed by a slug of its name — add, remove, or change
+// coins there without touching this component or any page.
+function slugify(str) {
+  return String(str)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+export default function Coins({ tool, size = 'md', className = '' }) {
   return (
     <span
-      className={`inline-flex items-center gap-1 ${className}`}
-      role="img"
-      aria-label={`${n} coin${n === 1 ? '' : 's'}`}
-    >
-      {Array.from({ length: n }).map((_, i) => (
-        <span key={i} className={size === 'sm' ? 'coin coin-sm' : 'coin'} />
-      ))}
-    </span>
+      className={`coins ${size === 'sm' ? 'coins-sm' : ''} ${className}`}
+      data-coin-key={slugify(tool)}
+      aria-hidden="true"
+    />
   )
 }

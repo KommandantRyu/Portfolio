@@ -1,5 +1,5 @@
 import Gauge from './Gauge.jsx'
-import Gear from './Gear.jsx'
+import Chain from './Chain.jsx'
 
 export default function Footer() {
   return (
@@ -11,7 +11,7 @@ export default function Footer() {
           © {new Date().getFullYear()} Rud Gabrie Ba-oy. Built with React, Vite, Tailwind CSS and Express.
         </p>
         <div className="hidden sm:flex items-center gap-3 shrink-0" aria-hidden="true">
-          <Gear size={18} className="text-gold/50" spin spinDuration="16s" />
+          <Chain size={18} links={3} sway reverse swayDuration="5s" className="text-gold/50" />
           <Gauge value={0.7} decorative className="w-9 h-9" />
         </div>
       </div>

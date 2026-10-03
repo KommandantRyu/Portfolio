@@ -66,17 +66,14 @@ const SKILL_SECTIONS = [
     entries: [
       {
         name: 'JavaScript',
-        coins: 3,
         note: 'Primary language across the stack — {React} on the frontend, {Express} on the backend, same syntax the whole way through.',
       },
       {
         name: 'TypeScript',
-        coins: 2,
         note: 'Reached for on larger codebases where {type safety} earns its keep, especially logic shared between frontend and backend.',
       },
       {
         name: 'SQL',
-        coins: 2,
         note: 'Querying and structuring data in {PostgreSQL} — schema design, joins, and everyday reads and writes.',
       },
     ],
@@ -88,9 +85,9 @@ const SKILL_SECTIONS = [
     description:
       'Building interfaces with {React}, styled through {Tailwind CSS}, bundled and served in development with {Vite}.',
     entries: [
-      { name: 'React', coins: 3, note: 'Component-driven interfaces and client-side routing.' },
-      { name: 'Tailwind CSS', coins: 3, note: 'Utility-first styling, with custom design tokens.' },
-      { name: 'Vite', coins: 2, note: 'Dev server and production bundler.' },
+      { name: 'React', note: 'Component-driven interfaces and client-side routing.' },
+      { name: 'Tailwind CSS', note: 'Utility-first styling, with custom design tokens.' },
+      { name: 'Vite', note: 'Dev server and production bundler.' },
     ],
   },
   {
@@ -100,10 +97,10 @@ const SKILL_SECTIONS = [
     description:
       'Serving APIs with {Express}, with {Flask} and {FastAPI} for Python-side services, backed by {PostgreSQL}.',
     entries: [
-      { name: 'Express', coins: 3, note: 'REST APIs on Node.js.' },
-      { name: 'Flask', coins: 2, note: 'Lightweight Python web services.' },
-      { name: 'FastAPI', coins: 2, note: 'Async Python APIs with typed request handling.' },
-      { name: 'PostgreSQL', coins: 2, note: 'Relational data storage.' },
+      { name: 'Express', note: 'REST APIs on Node.js.' },
+      { name: 'Flask', note: 'Lightweight Python web services.' },
+      { name: 'FastAPI', note: 'Async Python APIs with typed request handling.' },
+      { name: 'PostgreSQL', note: 'Relational data storage.' },
     ],
   },
   {
@@ -113,9 +110,9 @@ const SKILL_SECTIONS = [
     description:
       'Prototyping embedded systems on {Arduino} and {Raspberry Pi}, with {MQTT} for device-to-device messaging.',
     entries: [
-      { name: 'Arduino', coins: 2, note: 'Microcontroller prototyping and sensor input.' },
-      { name: 'Raspberry Pi', coins: 2, note: 'Single-board computing for gateways and edge tasks.' },
-      { name: 'MQTT', coins: 1, note: 'Lightweight publish/subscribe messaging between devices.' },
+      { name: 'Arduino', note: 'Microcontroller prototyping and sensor input.' },
+      { name: 'Raspberry Pi', note: 'Single-board computing for gateways and edge tasks.' },
+      { name: 'MQTT', note: 'Lightweight publish/subscribe messaging between devices.' },
     ],
   },
   {
@@ -125,9 +122,9 @@ const SKILL_SECTIONS = [
     description:
       'Day-to-day workflow runs on {Git} for version control, {Docker} for environments, and {Linux}.',
     entries: [
-      { name: 'Git', coins: 3, note: 'Version control and collaboration.' },
-      { name: 'Docker', coins: 2, note: 'Reproducible development environments.' },
-      { name: 'Linux', coins: 2, note: 'Daily-driver command line and servers.' },
+      { name: 'Git', note: 'Version control and collaboration.' },
+      { name: 'Docker', note: 'Reproducible development environments.' },
+      { name: 'Linux', note: 'Daily-driver command line and servers.' },
     ],
   },
 ];

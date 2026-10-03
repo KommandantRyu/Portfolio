@@ -13,9 +13,6 @@ const ACCENTS = {
 
 const AUTO_ADVANCE_MS = 6000
 
-// A section's headline coin count is its most-used tool's coins.
-const topCoins = (section) => Math.max(...section.entries.map((e) => e.coins))
-
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
   Boolean(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)
@@ -79,7 +76,7 @@ export default function SkillSectionCarousel({ sections }) {
                 >
                   {s.title}
                 </span>
-                <Coins count={topCoins(s)} size="sm" />
+                <Coins tool={`section-${s.id}`} size="sm" />
               </button>
             )
           })}
@@ -89,7 +86,7 @@ export default function SkillSectionCarousel({ sections }) {
         <div className="min-w-0">
           <div className="flex items-start justify-between gap-4 mb-4">
             <div>
-              <Coins count={topCoins(active)} />
+              <Coins tool={`section-${active.id}`} />
               <p className="font-display text-2xl font-semibold text-text leading-tight mt-2">
                 {active.title}{' '}
                 <span className="text-muted text-base font-normal">×{active.entries.length}</span>
@@ -110,7 +107,7 @@ export default function SkillSectionCarousel({ sections }) {
               <li key={entry.name} className={`border-l-2 ${accent.border} bg-ink/40 px-3 py-2.5`}>
                 <div className="flex items-center justify-between gap-3">
                   <span className="font-display text-sm font-semibold text-text">{entry.name}</span>
-                  <Coins count={entry.coins} size="sm" />
+                  <Coins tool={entry.name} size="sm" />
                 </div>
                 <p className="text-muted text-xs leading-relaxed mt-1">
                   {renderKeywordText(entry.note, accent.text)}

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Gauge from '../components/Gauge.jsx'
+import Chain from '../components/Chain.jsx'
 
 const NAV_ICONS = [
   { to: '/about', code: 'AB', label: 'About' },
@@ -55,6 +56,16 @@ export default function Home() {
             className="absolute inset-0 w-full h-full object-cover"
           />
 
+          {/* Draped chain across the portrait — Limbus's signature "bound
+              Sinner" framing, rendered as an original SVG, not game art. */}
+          <Chain
+            size={30}
+            links={7}
+            sway
+            swayDuration="7s"
+            className="absolute top-2 right-2 text-gold/80 drop-shadow-[0_2px_2px_rgba(0,0,0,0.6)] rotate-[38deg] origin-top-right z-10"
+          />
+
           {/* Toolbar */}
           <div className="relative z-10 flex items-center justify-between px-4 pt-4">
             <span className="notch-sm bg-ink/70 text-gold font-mono text-[10px] tracking-widest uppercase px-2 py-1 border border-border">
@@ -62,23 +73,23 @@ export default function Home() {
             </span>
             <div className="flex gap-2">
               <a
-                href="mailto: arthuryoshikage@gmail.com"
+                href="mailto:you@example.com"
                 title="Email"
                 className="notch-sm w-8 h-8 bg-ink/70 border border-border hover:border-gold flex items-center justify-center text-xs transition-colors"
               >
                 ✉
               </a>
               <a
-                href="https://github.com/KommandantRyu"
+                href="https://github.com/kommandantryu"
                 target="_blank"
                 rel="noreferrer"
                 title="GitHub"
                 className="notch-sm w-8 h-8 bg-ink/70 border border-border hover:border-gold flex items-center justify-center text-xs transition-colors"
               >
-                
+                gh
               </a>
               <a
-                href="https://www.linkedin.com/in/rud-gabriel-ba-oy-1333083b8/"
+                href="https://linkedin.com/in/yourusername"
                 target="_blank"
                 rel="noreferrer"
                 title="LinkedIn"
@@ -95,7 +106,9 @@ export default function Home() {
               Rud Gabriel Ba-oy
             </p>
             <p className="text-text text-base md:text-lg italic leading-relaxed max-w-prose">
-              "Magic is believing in yourself, if you can do that, you can make anything happen."
+              "I'm a software developer. Replace this line with a short,
+              in-character intro — what you do, what you're focused on right
+              now, and what brings you to this site."
             </p>
           </div>
         </div>

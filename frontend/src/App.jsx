@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
-import Gear from './components/Gear.jsx'
+import Chain from './components/Chain.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import BeyondCodeHub from './pages/BeyondCodeHub.jsx'
@@ -12,11 +12,30 @@ import Skills from './pages/Skills.jsx'
 export default function App() {
   return (
     <div className="relative min-h-screen flex flex-col">
-      {/* Background machinery: huge, faint gears turning very slowly */}
+      {/* Background machinery: huge, faint chains draped across the corners */}
       <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <Gear size={340} spin spinDuration="140s" className="absolute -left-24 top-1/3 text-gold/[0.05]" />
-        <Gear size={260} spin reverse spinDuration="110s" className="absolute -right-16 bottom-8 text-crimson/[0.07]" />
-        <Gear size={170} spin reverse spinDuration="80s" className="absolute right-[18%] -top-10 text-gold/[0.04]" />
+        <Chain
+          size={64}
+          links={12}
+          sway
+          swayDuration="16s"
+          className="absolute -left-32 top-1/4 text-gold/[0.06] rotate-[-35deg] origin-top-left"
+        />
+        <Chain
+          size={56}
+          links={11}
+          sway
+          reverse
+          swayDuration="13s"
+          className="absolute -right-24 bottom-10 text-crimson/[0.08] rotate-[28deg] origin-bottom-right"
+        />
+        <Chain
+          size={40}
+          links={8}
+          sway
+          swayDuration="10s"
+          className="absolute right-[14%] -top-6 text-gold/[0.05] rotate-[40deg] origin-top-right"
+        />
       </div>
 
       <Header />
