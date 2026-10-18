@@ -44,10 +44,10 @@ const PROFILE = {
 const PROJECTS = [
   {
     id: 1,
-    title: 'Project One',
-    description: 'A short, plain-language description of what this project does and the problem it solves.',
-    tech: ['React', 'Express', 'FastAPI'],
-    link: 'https://github.com/yourusername/project-one',
+    title: 'Allora',
+    description: 'Event planning platform — customers book service vendors for weddings, birthdays & corporate events, and AI flags what is missing from the plan',
+    tech: ['Next.js', 'Supabase', 'TypeScript'],
+    link: 'https://github.com/maverickbarrientos/Allora',
   },
 
 ];

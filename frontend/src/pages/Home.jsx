@@ -73,7 +73,7 @@ export default function Home() {
             </span>
             <div className="flex gap-2">
               <a
-                href="mailto:you@example.com"
+                href="mailto: arthuryoshikage@gmail.com"
                 title="Email"
                 className="notch-sm w-8 h-8 bg-ink/70 border border-border hover:border-gold flex items-center justify-center text-xs transition-colors"
               >
@@ -89,7 +89,7 @@ export default function Home() {
                 gh
               </a>
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://linkedin.com/in/rudgabrielbaoy"
                 target="_blank"
                 rel="noreferrer"
                 title="LinkedIn"
