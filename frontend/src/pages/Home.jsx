@@ -51,7 +51,7 @@ export default function Home() {
           <span className="rivet bottom-3 right-3 z-10" />
 
           <img
-            src="/images/mypfp.jpg"
+            src="/images/home.jpg"
             alt="Rud Gabriel Ba-oy"
             className="absolute inset-0 w-full h-full object-cover"
           />
