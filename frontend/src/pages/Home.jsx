@@ -106,7 +106,7 @@ export default function Home() {
               Rud Gabriel Ba-oy
             </p>
             <p className="text-text text-base md:text-lg italic leading-relaxed max-w-prose">
-              "I build web apps and APIs. Here's what I've made, what I
+              "I build web apps and Games.  Here's what I've made, what I
               use, and what I do beyond code."
             </p>
           </div>
