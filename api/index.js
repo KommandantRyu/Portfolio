@@ -143,9 +143,9 @@ const BEYOND_CODE = [
     sin: 'gluttony',
     detailLabel: 'restaurant',
     items: [
-      { name: 'Bacon Cheese Burgers', image: '/images/beyond-code/foods/bacon-cheese-burger.jpg', detail: 'Add the restaurant or spot here' },
-      { name: 'Grilled Porks', image: '/images/beyond-code/foods/grilled-pork.jpg', detail: 'Add the restaurant or spot here' },
-      { name: 'Zarks', image: '/images/beyond-code/foods/zarks.jpg', detail: 'Add the restaurant or spot here' },
+      { name: 'Bacon Cheese Burgers', image: '/images/beyond-code/foods/bacon-cheese-burger.jpg', detail: 'Anywhere that piles on crispy bacon — greasy, no regrets' },
+      { name: 'Grilled Porks', image: '/images/beyond-code/foods/grilled-pork.jpg', detail: 'Charcoal-grilled pork — best straight off the grill' },
+      { name: 'Zarks', image: '/images/beyond-code/foods/zarks.jpg', detail: 'Oversized burgers — a Visayas chain that started in Cebu' },
     ],
   },
   {
@@ -156,9 +156,9 @@ const BEYOND_CODE = [
     detailLabel: 'achievement',
     // Steam CDN artwork — /steam/apps/{appid}/header.jpg
     items: [
-      { name: 'Limbus Company', image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1973530/header.jpg', detail: 'Add an achievement or highlight here' },
-      { name: 'Dark Souls 2: Scholar of The First Sin', image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/335300/header.jpg', detail: 'Add an achievement or highlight here' },
-      { name: 'Signalis', image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1262350/header.jpg', detail: 'Add an achievement or highlight here' },
+      { name: 'Limbus Company', image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1973530/header.jpg', detail: 'Grinding through the story one sinner at a time' },
+      { name: 'Dark Souls 2: Scholar of The First Sin', image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/335300/header.jpg', detail: 'Survived Drangleic — every boss was a lesson in patience' },
+      { name: 'Signalis', image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1262350/header.jpg', detail: 'A short, haunting trip through retro sci-fi horror' },
     ],
   },
   {
@@ -168,9 +168,9 @@ const BEYOND_CODE = [
     sin: 'sloth',
     detailLabel: 'why I like it',
     items: [
-      { name: 'The Avengers Assemble', image: '/images/beyond-code/shows/avengers-assemble.jpg', detail: 'Add a short note here' },
-      { name: 'Iron Man', image: '/images/beyond-code/shows/iron-man.jpg', detail: 'Add a short note here' },
-      { name: 'Panty, Stocking & Garterbelt', image: '/images/beyond-code/shows/panty-stocking-garterbelt.jpg', detail: 'Add a short note here' },
+      { name: 'The Avengers Assemble', image: '/images/beyond-code/shows/avengers-assemble.jpg', detail: 'The team-up that kicked off the MCU — pure blockbuster comfort' },
+      { name: 'Iron Man', image: '/images/beyond-code/shows/iron-man.jpg', detail: 'RDJ as Tony Stark — the suit, the snark, the start of it all' },
+      { name: 'Panty, Stocking & Garterbelt', image: '/images/beyond-code/shows/panty-stocking-garterbelt.jpg', detail: 'Chaotic, stylish, and unapologetically weird — Gainax at its loudest' },
     ],
   },
   {
@@ -180,9 +180,9 @@ const BEYOND_CODE = [
     sin: 'pride',
     detailLabel: 'specifics',
     items: [
-      { name: 'Fencing', image: '/images/beyond-code/other-hobbies/fencing.jpg', detail: 'Add specifics — weapon, club, level' },
-      { name: 'Writing', image: '/images/beyond-code/other-hobbies/writing.jpg', detail: 'Add specifics — genre, project' },
-      { name: 'Reading', image: '/images/beyond-code/other-hobbies/reading.jpg', detail: 'Add specifics — favorite genre or authors' },
+      { name: 'Fencing', image: '/images/beyond-code/other-hobbies/fencing.jpg', detail: 'Recreational — footwork drills and friendly bouts' },
+      { name: 'Writing', image: '/images/beyond-code/other-hobbies/writing.jpg', detail: 'Poems — mostly free verse, written late at night' },
+      { name: 'Reading', image: '/images/beyond-code/other-hobbies/reading.jpg', detail: 'Classics — old novels, older ideas, still relevant' },
     ],
   },
 ];
