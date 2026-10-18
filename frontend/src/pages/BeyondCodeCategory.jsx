@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import PageHeader from '../components/PageHeader.jsx'
+import SteamShowcase from '../components/SteamShowcase.jsx'
 import { apiUrl } from '../api.js'
 import { sinColor } from '../utils/sinColors.js'
 
@@ -69,6 +70,9 @@ export default function BeyondCodeCategory() {
         description={`${active.emoji}  ${active.items.length} entries`}
       />
 
+      {/* Live Steam stats: perfect games + longest playtime */}
+      {slug === 'games' && <SteamShowcase />}
+
       <div className={`card border ${color.border}`}>
         <div className="flex items-center gap-3 mb-6">
           <span className="tab-num">
@@ -89,6 +93,12 @@ export default function BeyondCodeCategory() {
               <img
                 src={item.image}
                 alt={item.name}
+                loading="lazy"
+                onError={(e) => {
+                  // Missing local file → shared placeholder art
+                  e.currentTarget.onerror = null
+                  e.currentTarget.src = '/images/beyond-code/placeholder.svg'
+                }}
                 className="notch-sm w-16 h-16 object-cover border border-border shrink-0"
               />
               <div className="min-w-0">

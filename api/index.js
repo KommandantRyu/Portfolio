@@ -11,6 +11,7 @@
  * Local development:
  *   cd api
  *   npm install
+ *   copy .env.example to .env and fill in STEAM_API_KEY + STEAM_ID
  *   npm start
  * Server starts on http://127.0.0.1:5000
  *
@@ -21,6 +22,11 @@
 
 const express = require('express');
 const cors = require('cors');
+const steam = require('./steam');
+
+// Loads api/.env when run locally (no-op on Vercel, where env vars are set
+// in the project dashboard instead).
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
@@ -137,9 +143,9 @@ const BEYOND_CODE = [
     sin: 'gluttony',
     detailLabel: 'restaurant',
     items: [
-      { name: 'Bacon Cheese Burgers', image: '/images/beyond-code/placeholder.svg', detail: 'Add the restaurant or spot here' },
-      { name: 'Grilled Porks', image: '/images/beyond-code/placeholder.svg', detail: 'Add the restaurant or spot here' },
-      { name: 'Zarks', image: '/images/beyond-code/placeholder.svg', detail: 'Add the restaurant or spot here' },
+      { name: 'Bacon Cheese Burgers', image: '/images/beyond-code/foods/bacon-cheese-burger.jpg', detail: 'Add the restaurant or spot here' },
+      { name: 'Grilled Porks', image: '/images/beyond-code/foods/grilled-pork.jpg', detail: 'Add the restaurant or spot here' },
+      { name: 'Zarks', image: '/images/beyond-code/foods/zarks.jpg', detail: 'Add the restaurant or spot here' },
     ],
   },
   {
@@ -148,10 +154,11 @@ const BEYOND_CODE = [
     emoji: '🎮',
     sin: 'wrath',
     detailLabel: 'achievement',
+    // Steam CDN artwork — /steam/apps/{appid}/header.jpg
     items: [
-      { name: 'Limbus Company', image: '/images/beyond-code/placeholder.svg', detail: 'Add an achievement or highlight here' },
-      { name: 'Dark Souls 2: Scholar of The First Sin', image: '/images/beyond-code/placeholder.svg', detail: 'Add an achievement or highlight here' },
-      { name: 'Psychological Horror', image: '/images/beyond-code/placeholder.svg', detail: 'Add an achievement or highlight here' },
+      { name: 'Limbus Company', image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1973530/header.jpg', detail: 'Add an achievement or highlight here' },
+      { name: 'Dark Souls 2: Scholar of The First Sin', image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/335300/header.jpg', detail: 'Add an achievement or highlight here' },
+      { name: 'Signalis', image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1262350/header.jpg', detail: 'Add an achievement or highlight here' },
     ],
   },
   {
@@ -161,9 +168,9 @@ const BEYOND_CODE = [
     sin: 'sloth',
     detailLabel: 'why I like it',
     items: [
-      { name: 'The Avengers Assemble', image: '/images/beyond-code/placeholder.svg', detail: 'Add a short note here' },
-      { name: 'Iron Man', image: '/images/beyond-code/placeholder.svg', detail: 'Add a short note here' },
-      { name: 'Panty, Stocking & Garterbelt', image: '/images/beyond-code/placeholder.svg', detail: 'Add a short note here' },
+      { name: 'The Avengers Assemble', image: '/images/beyond-code/shows/avengers-assemble.jpg', detail: 'Add a short note here' },
+      { name: 'Iron Man', image: '/images/beyond-code/shows/iron-man.jpg', detail: 'Add a short note here' },
+      { name: 'Panty, Stocking & Garterbelt', image: '/images/beyond-code/shows/panty-stocking-garterbelt.jpg', detail: 'Add a short note here' },
     ],
   },
   {
@@ -173,9 +180,9 @@ const BEYOND_CODE = [
     sin: 'pride',
     detailLabel: 'specifics',
     items: [
-      { name: 'Fencing', image: '/images/beyond-code/placeholder.svg', detail: 'Add specifics — weapon, club, level' },
-      { name: 'Writing', image: '/images/beyond-code/placeholder.svg', detail: 'Add specifics — genre, project' },
-      { name: 'Reading', image: '/images/beyond-code/placeholder.svg', detail: 'Add specifics — favorite genre or authors' },
+      { name: 'Fencing', image: '/images/beyond-code/other-hobbies/fencing.jpg', detail: 'Add specifics — weapon, club, level' },
+      { name: 'Writing', image: '/images/beyond-code/other-hobbies/writing.jpg', detail: 'Add specifics — genre, project' },
+      { name: 'Reading', image: '/images/beyond-code/other-hobbies/reading.jpg', detail: 'Add specifics — favorite genre or authors' },
     ],
   },
 ];
@@ -198,6 +205,19 @@ app.get('/api/skill-sections', (req, res) => {
 
 app.get('/api/beyond-code', (req, res) => {
   res.json(BEYOND_CODE);
+});
+
+// Steam library highlights (perfect games + longest playtime). Data is
+// fetched from the Steam Web API and cached in memory by api/steam.js.
+app.get('/api/steam/games', async (req, res) => {
+  try {
+    res.json(await steam.getShowcase());
+  } catch (err) {
+    if (err instanceof steam.SteamError && (err.kind === 'config' || err.kind === 'privacy')) {
+      return res.status(503).json({ error: err.message });
+    }
+    res.status(502).json({ error: 'Steam is unreachable right now — try again in a few minutes.' });
+  }
 });
 
 app.post('/api/contact', (req, res) => {
