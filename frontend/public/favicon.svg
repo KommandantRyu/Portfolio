@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- notched panel echoing the site's .notch card style -->
+  <path d="M3 3 H47 L61 17 V61 H3 Z" fill="#0B0908" stroke="#3A1418" stroke-width="2"/>
+  <!-- inner gold hairline -->
+  <path d="M7.5 7.5 H46 L56.5 18 V56.5 H7.5 Z" fill="none" stroke="#B99456" stroke-width="1.5" opacity="0.9"/>
+  <!-- serif G, gold on ink -->
+  <text x="31" y="33" font-family="Georgia, 'Times New Roman', serif" font-size="36" font-weight="bold" fill="#B99456" text-anchor="middle" dominant-baseline="central">G</text>
+</svg>
