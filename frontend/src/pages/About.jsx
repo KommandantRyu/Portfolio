@@ -19,7 +19,7 @@ export default function About() {
               <div className="relative">
                 <span className="sinner-card-no">NO. 01</span>
                 <img
-                  src="/images/mypfp.jpg"
+                  src="/images/home.jpg"
                   alt="Rud Gabriel Ba-oy"
                   className="sinner-card-photo"
                 />
@@ -46,19 +46,20 @@ export default function About() {
 
           <div className="paper-lines border border-border px-5 py-4 -mx-1">
             <p>
-             As a BSIT student at PHINMA-University of Iloilo, I, Rud Gabriel, aspire to become a software developer because I enjoy using technology to create solutions to real-world problems.
-            I am drawn to this career because software development allows me to combine creativity, logical thinking, and problem-solving to build things that can be useful in people's everyday lives. 
-            I find challenging projects exciting because they give me opportunities to learn, experiment, and discover better ways of doing things. My goal is to develop software that not only works effectively 
-            but also makes tasks simpler, more convenient, and enjoyable for the people who use it.
-
+              I'm Rud Gabriel, a BSIT student at PHINMA-University of Iloilo and a
+              software developer focused on web apps and APIs. I like taking
+              problems that are messy in real life and turning them into
+              interfaces that are simple to use. Most of what I know came from
+              building things — picking up a stack because a project needed it,
+              breaking it, and figuring out why.
             </p>
             <p>
-              I am an enthusiastic and passionate software developer who enjoys creating software based on the excitement, creativity, and challenges 
-              that come with development. I see programming not only as a way to build useful applications, 
-              but also as an opportunity to solve problems, explore new ideas, and continuously improve my skills. 
-              I enjoy taking on challenging projects because they push me to think creatively and find unique solutions. 
-              For me, the most rewarding part of software development is the process of turning an idea into something functional and enjoyable, especially 
-              when I can experiment, learn from mistakes, and overcome difficult problems along the way.
+              I do my best work on projects that push me: hard bugs and
+              unfamiliar tools are where I learn the fastest. The goal is
+              straightforward — build software that actually works and makes
+              everyday tasks easier for the people using it. Whether it's school,
+              a personal project, or something for this site, I'd rather ship
+              something real than talk about it.
             </p>
           </div>
 
@@ -77,12 +78,8 @@ export default function About() {
             <p className="font-mono text-xs text-muted tracking-widest uppercase mb-3">experience</p>
             <ul className="space-y-3 text-sm">
               <li>
-                <p className="text-text font-medium">Intern,Lead Gen </p>
+                <p className="text-text font-medium">Intern, Lead Gen</p>
                 <p className="text-muted">2023 — 2023</p>
-              </li>
-              <li>
-                <p className="text-text font-medium"></p>
-                <p className="text-muted"></p>
               </li>
             </ul>
           </div>
