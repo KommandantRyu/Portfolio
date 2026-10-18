@@ -19,7 +19,7 @@ export default function About() {
               <div className="relative">
                 <span className="sinner-card-no">NO. 01</span>
                 <img
-                  src="/images/home.jpg"
+                  src="/images/mypfp.jpg"
                   alt="Rud Gabriel Ba-oy"
                   className="sinner-card-photo"
                 />
