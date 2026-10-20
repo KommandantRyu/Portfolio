@@ -124,7 +124,7 @@ export default function Certificates() {
                     rel="noreferrer"
                     className="text-gold text-sm font-medium hover:underline mt-auto"
                   >
-                    Verify ↗
+                    Open PDF ↗
                   </a>
                 )}
               </article>

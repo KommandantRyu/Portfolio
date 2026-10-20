@@ -188,42 +188,31 @@ const BEYOND_CODE = [
   },
 ];
 
-// Certificates & seminars for the /certificates page. The entries below are
-// PLACEHOLDERS — replace them with real certificates/seminars later. Items
-// render in array order, so put the most important ones first. `image` is a
-// path into frontend/public/images/certificates/ (drop the scan there) or
-// null; missing files fall back to placeholder.svg on the frontend. `link`
-// (verification URL) and `note` are optional.
+// Certificates & seminars for the /certificates page. Items render in array
+// order, so put the most important ones first. `image` is a path into
+// frontend/public/images/certificates/ (drop the scan there) or null; missing
+// files fall back to placeholder.svg on the frontend. `link` (the PDF or
+// verification URL) and `note` are optional.
 const CERTIFICATES = [
   {
     id: 1,
-    title: 'Web Development Bootcamp',
+    title: 'Cybersecurity and Cloud Fundamentals 1.0',
     type: 'certificate', // 'certificate' | 'seminar'
-    issuer: 'freeCodeCamp',
-    date: '2024',
-    image: '/images/certificates/web-dev-bootcamp.jpg',
-    link: 'https://www.freecodecamp.org/certification',
-    note: 'Full-stack curriculum — HTML, CSS, JavaScript, and React',
+    issuer: 'John Whittle, COO',
+    date: '2026',
+    image: null, // PDFs can't render as <img> — the placeholder serves as the thumbnail
+    link: '/images/certificates/certificate.pdf',
+    note: 'Course completion certificate issued 10/20/26',
   },
   {
     id: 2,
-    title: 'Responsive Web Design',
+    title: 'Introduction to Next Generation Firewall 1.0',
     type: 'certificate',
-    issuer: 'freeCodeCamp',
-    date: '2023',
-    image: null, // no scan yet — renders the themed placeholder
-    link: null,
-    note: 'Mobile-first layouts, Flexbox, and CSS Grid',
-  },
-  {
-    id: 3,
-    title: 'Tech Career 101 Seminar',
-    type: 'seminar',
-    issuer: 'PHINMA-UI',
-    date: '2024',
-    image: '/images/certificates/tech-career-101.jpg',
-    link: null,
-    note: 'Campus seminar on breaking into the software industry',
+    issuer: 'John Whittle, COO',
+    date: '2026',
+    image: null,
+    link: '/images/certificates/certificate2.pdf',
+    note: 'Course completion certificate issued 10/20/26',
   },
 ];
 
