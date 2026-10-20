@@ -76,11 +76,12 @@ portfolio/
 | `/`                     | `Home`                 | static                  |
 | `/about`                | `About`                | static                  |
 | `/projects`             | `Projects`             | `GET /api/projects`    |
+| `/certificates`         | `Certificates`         | `GET /api/certificates` |
 | `/skills`               | `Skills`               | `GET /api/skill-sections` |
 | `/beyond-code`          | `BeyondCodeHub`        | `GET /api/beyond-code` |
 | `/beyond-code/:category`| `BeyondCodeCategory`   | `GET /api/beyond-code` (filtered by slug) |
 
-Layout shell: fixed background `Chain` motifs → sticky `Header` → `<main>` (max-w-4xl) → `Footer`.
+Layout shell: fixed background `Chain` motifs → fixed left `Sidebar` (desktop rail, mobile top bar + drawer) → shifted `<main>` (max-w-4xl, `md:pl-60`) → `Footer`.
 
 ### API routes (`api/index.js`)
 
@@ -88,6 +89,7 @@ Layout shell: fixed background `Chain` motifs → sticky `Header` → `<main>` (
 | ------ | ------------------- | ------------------------------------ |
 | GET    | `/api/profile`      | Name, role, tagline, location        |
 | GET    | `/api/projects`     | Project list                         |
+| GET    | `/api/certificates` | Certificates & seminars list         |
 | GET    | `/api/skill-sections` | Skill carousel panels              |
 | GET    | `/api/beyond-code`  | Hobby categories + items             |
 | GET    | `/api/steam/games`  | Steam library highlights (live, cached) |
@@ -118,6 +120,28 @@ Layout shell: fixed background `Chain` motifs → sticky `Header` → `<main>` (
   }
 ]
 ```
+
+### `GET /api/certificates`
+
+```json
+[
+  {
+    "id": 1,
+    "title": "string",
+    "type": "certificate | seminar",
+    "issuer": "string",
+    "date": "string",
+    "image": "string | null",
+    "link": "string (optional)",
+    "note": "string (optional)"
+  }
+]
+```
+
+- **Current entries are placeholders** — edit the `CERTIFICATES` array in `api/index.js` to add real ones. Items render in array order.
+- **Images:** `image` is a site-relative path into `frontend/public/images/certificates/` (drop the scan there), or `null`/missing to show the placeholder directly. Missing files fall back to `/images/certificates/placeholder.svg` via an `onError` handler.
+- `link` renders a gold "Verify ↗" anchor (verification URL); `note` is a one-line description.
+- The page adds client-side filter tabs (All / Certificates / Seminars) on top of this payload.
 
 ### `GET /api/skill-sections`
 
@@ -220,7 +244,11 @@ The Express app is exported as `module.exports` (imported by Vercel) and only ca
 
 The visual identity is **industrial-brass / "Limbus Company"-inspired**: near-black backgrounds, dried-blood hairlines, bone-white text, crimson and aged-gold accents, with recurring machinery motifs (chains, gauges, gears, pipes, rivets).
 
-### 7.1 Color tokens (`tailwind.config.js`)
+### 7.1 Color tokens (`tailwind.config.js` + `index.css`)
+
+The seven core tokens are **CSS-variable driven** — Tailwind maps each token to `rgb(var(--c-<token>) / <alpha-value>)`, and the actual values live in `:root` (dark, the default) and `html.light` (blue light theme) in `index.css`. Flipping the variables rethemes every token-based utility **and** the component kit (`.card`, `.tab-num`, `.gauge`, …) in one place. Three var groups drive the whole look: `--c-*` (core palette), `--c-sin-*` (Beyond Code category hues), and `--m-*` (metal/brass décor — steel-blue in light). All three are theme-flipped in one place.
+
+**Dark theme (default)**
 
 | Token       | Hex       | Role                                    |
 | ----------- | --------- | --------------------------------------- |
@@ -232,14 +260,33 @@ The visual identity is **industrial-brass / "Limbus Company"-inspired**: near-bl
 | `crimson`   | `#C8202F` | Primary accent                          |
 | `gold`      | `#B99456` | Secondary accent (aged brass — sparing) |
 
-**Sin palette** (`colors.sin.*`) — color-codes Beyond Code categories:
+**Light theme** (`html.light` — blue; ice-blue ground, navy text, crimson→blue and gold→steel-blue so every accent reads blue)
 
-| Sin       | Hex       |        | Sin       | Hex       |
-| --------- | --------- | ------ | --------- | --------- |
-| wrath     | `#D64545` |       | envy      | `#9B6FC4` |
-| lust      | `#E08830` |       | gloom     | `#6FB8D9` |
-| sloth     | `#D4B23C` |       | pride     | `#4A7FC7` |
-| gluttony  | `#4CAF6D` |       |           |           |
+| Token       | Hex       | Role                                      |
+| ----------- | --------- | ----------------------------------------- |
+| `ink`       | `#EAF0F7` | Page background (ice blue)                |
+| `panel`     | `#F4F8FC` | Card / panel background (pale blue-white) |
+| `border`    | `#8FA4BE` | Hairline borders (steel blue)             |
+| `text`      | `#112033` | Primary text (navy ink)                   |
+| `muted`     | `#546A84` | Secondary text (slate)                    |
+| `crimson`   | `#2563EB` | Primary accent (blue)                     |
+| `gold`      | `#1E5291` | Secondary accent (deep steel blue)        |
+
+**Theming mechanics**
+
+- Decor tints `--scan-rgb`, `--tint-hi`, `--tint-lo`, `--steam-rgb` (scanlines, inset highlights/shadows, steam) are also themed per mode (cool blue values in light).
+- Brass/metal décor is now **var-driven** via the `--m-*` ladder (`.pipe`, `.pipe-v`, `.rivet`, `.brass-plate`, `.coins`, `.chain-*`, `.pipe-divider`, `.gauge`): warm brass in `:root`, steel-blue in `html.light`, so the metal reads blue in light mode.
+- **Photo-bound elements are pinned** to fixed dark/brass styling in *both* themes, because they sit over the always-dark `home.jpg` / portrait photos and would go unreadable if they flipped light: Home hero chips (`bg-[#0B0908]/75`, brass text), the monologue gradient (`from-[#0B0908]` scrim, bone text), the draped chains (`#b99456`), and `.sinner-card-no` (bright brass `#d2b06a` on its fixed dark badge).
+- `ThemeToggle.jsx` toggles the `light` class on `<html>` and persists to `localStorage('theme')`; an inline pre-paint script in `index.html` applies it before first render (no flash). Default is dark.
+
+**Sin palette** (`colors.sin.*`) — color-codes Beyond Code categories. Now **CSS-variable driven** (`rgb(var(--c-sin-*) / <alpha-value>)`): bright values in `:root` (dark), **darkened for legibility** in `html.light` so the hues don't wash out on the ice-blue ground. The category color-coding is preserved in both themes.
+
+| Sin       | Dark (`:root`) | Light (`html.light`) |        | Sin      | Dark (`:root`) | Light (`html.light`) |
+| --------- | -------------- | -------------------- | ------ | -------- | -------------- | -------------------- |
+| wrath     | `#D64545`      | `#B33232`            |        | envy     | `#9B6FC4`      | `#72469E`            |
+| lust      | `#E08830`      | `#A85A15`            |        | gloom    | `#6FB8D9`      | `#22688C`            |
+| sloth     | `#D4B23C`      | `#8A7115`            |        | pride    | `#4A7FC7`      | `#2C56A0`            |
+| gluttony  | `#4CAF6D`      | `#26774A`            |        |          |                |                      |
 
 ### 7.2 Typography
 
@@ -263,15 +310,15 @@ The visual identity is **industrial-brass / "Limbus Company"-inspired**: near-bl
 | `.tab-num`           | Skewed numbered badge (project cards)                          |
 | `.brass-plate`       | Engraved label plate                                           |
 | `.btn-slant`         | Slanted action button                                          |
-| `.pipe` / `.pipe-divider` | Brass pipe rail under header/footer and between sections  |
+| `.pipe` / `.pipe-v` / `.pipe-divider` | Brass pipe: horizontal rail (footer/sections), vertical sidebar edge, divider |
 | `.rivet`, `.hazard-stripe`, `.glow-divider` | Industrial detailing          |
 | `.window-frame`      | Home hero monitor frame                                        |
 | `.paper-lines` / `.dog-ear` | Ruled-paper texture for About bio                       |
-| `.rail-track`, `.steam-puff`, `.tagline-strip` | Header/footer flourishes   |
+| `.rail-track`, `.steam-puff`, `.tagline-strip` | Sidebar/footer flourishes   |
 
 ### 7.4 Motifs & animation
 
-- **Chain** (`Chain.jsx`) — generative SVG of N interlocking links; props for size, link count, sway. Used in header, footer, page background, hero, identity card. Signature motif.
+- **Chain** (`Chain.jsx`) — generative SVG of N interlocking links; props for size, link count, sway. Used in sidebar, footer, page background, hero, identity card. Signature motif.
 - **Gauge** (`Gauge.jsx`) — brass dial driven by `--needle` custom property; `value` 0→1 sweeps the needle 150°→390°. Doubles as carousel progress.
 - **Coins** (`Coins.jsx`) — pure-CSS gold pips sized by `--coins`; ratings live in the `COIN COUNTS` table in `index.css` (edit CSS, not JS).
 - **Gear** (`Gear.jsx`) — cog SVG with spin animation (currently unused; replaced by chains).
@@ -288,7 +335,8 @@ The visual identity is **industrial-brass / "Limbus Company"-inspired**: near-bl
 
 | Component               | Purpose                                                              |
 | ----------------------- | -------------------------------------------------------------------- |
-| `Header`                | Sticky nav: RG badge + chain logo, desktop nav dots, mobile hamburger, pipe rail + steam vents |
+| `Sidebar`               | Left rail nav (desktop, w-60) + slim top bar & slide-in drawer (mobile); logo, links, `ThemeToggle`, vertical brass pipe + steam |
+| `ThemeToggle`           | Dark/light switch: toggles `light` class on `<html>`, persists to `localStorage('theme')` |
 | `Footer`                | Copyright, tech credits, mirrored pipe, decorative chain + gauge      |
 | `PageHeader`            | Reusable page intro: gold eyebrow, Cinzel h1, muted description, pipe divider |
 | `Chain`                 | Generative SVG chain (signature background/frame motif)              |

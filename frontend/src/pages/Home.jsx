@@ -63,19 +63,19 @@ export default function Home() {
             links={7}
             sway
             swayDuration="7s"
-            className="absolute top-2 right-2 text-gold/80 drop-shadow-[0_2px_2px_rgba(0,0,0,0.6)] rotate-[38deg] origin-top-right z-10"
+            className="absolute top-2 right-2 text-[#b99456] drop-shadow-[0_2px_2px_rgba(0,0,0,0.6)] rotate-[38deg] origin-top-right z-10"
           />
 
           {/* Toolbar */}
           <div className="relative z-10 flex items-center justify-between px-4 pt-4">
-            <span className="notch-sm bg-ink/70 text-gold font-mono text-[10px] tracking-widest uppercase px-2 py-1 border border-border">
+            <span className="notch-sm bg-[#0B0908]/75 text-[#b99456] font-mono text-[10px] tracking-widest uppercase px-2 py-1 border border-[#3a2616]">
               identity
             </span>
             <div className="flex gap-2">
               <a
                 href="mailto: arthuryoshikage@gmail.com"
                 title="Email"
-                className="notch-sm w-8 h-8 bg-ink/70 border border-border hover:border-gold flex items-center justify-center text-xs transition-colors"
+                className="notch-sm w-8 h-8 bg-[#0B0908]/75 border border-[#3a2616] hover:border-[#b99456] flex items-center justify-center text-xs transition-colors"
               >
                 ✉
               </a>
@@ -84,7 +84,7 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
                 title="GitHub"
-                className="notch-sm w-8 h-8 bg-ink/70 border border-border hover:border-gold flex items-center justify-center text-xs transition-colors"
+                className="notch-sm w-8 h-8 bg-[#0B0908]/75 border border-[#3a2616] hover:border-[#b99456] flex items-center justify-center text-xs transition-colors"
               >
                 gh
               </a>
@@ -93,7 +93,7 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
                 title="LinkedIn"
-                className="notch-sm w-8 h-8 bg-ink/70 border border-border hover:border-gold flex items-center justify-center text-xs transition-colors"
+                className="notch-sm w-8 h-8 bg-[#0B0908]/75 border border-[#3a2616] hover:border-[#b99456] flex items-center justify-center text-xs transition-colors"
               >
                 in
               </a>
@@ -101,11 +101,11 @@ export default function Home() {
           </div>
 
           {/* Monologue overlay */}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/80 to-transparent pt-16 pb-5 px-5">
-            <p className="font-mono text-[10px] text-gold tracking-widest uppercase mb-2">
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0B0908] via-[#0B0908]/80 to-transparent pt-16 pb-5 px-5">
+            <p className="font-mono text-[10px] text-[#b99456] tracking-widest uppercase mb-2">
               Rud Gabriel Ba-oy
             </p>
-            <p className="text-text text-base md:text-lg italic leading-relaxed max-w-prose">
+            <p className="text-[#ede6dd] text-base md:text-lg italic leading-relaxed max-w-prose">
               "I build web apps and Games.  Here's what I've made, what I
               use, and what I do beyond code."
             </p>

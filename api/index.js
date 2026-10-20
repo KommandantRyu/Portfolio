@@ -4,6 +4,7 @@
  * Routes:
  *   GET  /api/profile        -> basic profile info
  *   GET  /api/projects       -> list of projects
+ *   GET  /api/certificates   -> certificates & seminars list
  *   GET  /api/skill-sections -> Languages/Frontend/Backend/IoT/Tools skill panel
  *   GET  /api/beyond-code    -> hobby categories for the Beyond Code page
  *   POST /api/contact        -> receive a contact form submission
@@ -187,6 +188,45 @@ const BEYOND_CODE = [
   },
 ];
 
+// Certificates & seminars for the /certificates page. The entries below are
+// PLACEHOLDERS — replace them with real certificates/seminars later. Items
+// render in array order, so put the most important ones first. `image` is a
+// path into frontend/public/images/certificates/ (drop the scan there) or
+// null; missing files fall back to placeholder.svg on the frontend. `link`
+// (verification URL) and `note` are optional.
+const CERTIFICATES = [
+  {
+    id: 1,
+    title: 'Web Development Bootcamp',
+    type: 'certificate', // 'certificate' | 'seminar'
+    issuer: 'freeCodeCamp',
+    date: '2024',
+    image: '/images/certificates/web-dev-bootcamp.jpg',
+    link: 'https://www.freecodecamp.org/certification',
+    note: 'Full-stack curriculum — HTML, CSS, JavaScript, and React',
+  },
+  {
+    id: 2,
+    title: 'Responsive Web Design',
+    type: 'certificate',
+    issuer: 'freeCodeCamp',
+    date: '2023',
+    image: null, // no scan yet — renders the themed placeholder
+    link: null,
+    note: 'Mobile-first layouts, Flexbox, and CSS Grid',
+  },
+  {
+    id: 3,
+    title: 'Tech Career 101 Seminar',
+    type: 'seminar',
+    issuer: 'PHINMA-UI',
+    date: '2024',
+    image: '/images/certificates/tech-career-101.jpg',
+    link: null,
+    note: 'Campus seminar on breaking into the software industry',
+  },
+];
+
 // ---------------------------------------------------------------------------
 // Routes
 // ---------------------------------------------------------------------------
@@ -197,6 +237,10 @@ app.get('/api/profile', (req, res) => {
 
 app.get('/api/projects', (req, res) => {
   res.json(PROJECTS);
+});
+
+app.get('/api/certificates', (req, res) => {
+  res.json(CERTIFICATES);
 });
 
 app.get('/api/skill-sections', (req, res) => {

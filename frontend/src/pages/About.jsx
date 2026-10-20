@@ -28,7 +28,7 @@ export default function About() {
                   links={5}
                   sway
                   swayDuration="6s"
-                  className="absolute top-1 right-1 text-gold/80 drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)] rotate-[35deg] origin-top-right z-10"
+                  className="absolute top-1 right-1 text-[#b99456] drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)] rotate-[35deg] origin-top-right z-10"
                 />
                 <span className="dog-ear" />
               </div>

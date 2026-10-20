@@ -1,0 +1,11 @@
+<svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="200" fill="#161011"/>
+  <rect x="0.5" y="0.5" width="399" height="199" fill="none" stroke="#3A1418" stroke-width="1"/>
+  <!-- seal + ribbon motif -->
+  <circle cx="200" cy="78" r="26" fill="none" stroke="#3A1418" stroke-width="2"/>
+  <circle cx="200" cy="78" r="18" fill="none" stroke="#3A1418" stroke-width="1"/>
+  <path d="M189 100 L194 134 L200 123 L206 134 L211 100 Z" fill="#3A1418"/>
+  <text x="200" y="170" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#8F7F77" letter-spacing="1">
+    add certificate scan
+  </text>
+</svg>

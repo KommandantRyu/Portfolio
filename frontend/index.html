@@ -15,6 +15,15 @@
   </head>
   <body class="bg-ink text-text font-body">
     <div id="root"></div>
+    <script>
+      // Apply the persisted light theme before first paint to avoid a
+      // dark flash. ThemeToggle.jsx keeps this in sync afterwards.
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.add('light')
+        }
+      } catch (e) { /* private mode — default to dark */ }
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -2,16 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===========================================================================
+   THEME VARIABLES — the whole palette is painted from these, so flipping
+   the values below rethemes every token-based class AND the component kit.
+   Dark (industrial Limbus look) is the default in :root; the ice-BLUE light
+   theme overrides on html.light (set by ThemeToggle.jsx, persisted in
+   localStorage('theme'), applied pre-paint by the inline script in
+   index.html). Values are space-separated RGB channels so Tailwind's
+   /opacity modifiers (bg-ink/80 …) keep working.
+
+   Three var groups:
+   --c-*      core palette (Tailwind color tokens)
+   --c-sin-*  Beyond Code category hues (bright in dark, darkened in light)
+   --m-*      metal/brass décor (pipes, rivets, coins…) — steel-blue in light
+   =========================================================================== */
+:root {
+  color-scheme: dark;
+  /* Core palette (dark / default) */
+  --c-ink: 11 9 8;         /* #0B0908 page background */
+  --c-panel: 22 16 17;     /* #161011 card / panel background */
+  --c-border: 58 20 24;    /* #3A1418 hairline borders, dried-blood red */
+  --c-text: 237 230 221;   /* #EDE6DD primary text, warm bone white */
+  --c-muted: 143 127 119;  /* #8F7F77 secondary text */
+  --c-crimson: 200 32 47;  /* #C8202F primary accent */
+  --c-gold: 185 148 86;    /* #B99456 secondary accent, aged brass */
+  /* Sin-affinity hues (Beyond Code / Skills accents) */
+  --c-sin-wrath: 214 69 69;     /* #D64545 */
+  --c-sin-lust: 224 136 48;     /* #E08830 */
+  --c-sin-sloth: 212 178 60;    /* #D4B23C */
+  --c-sin-gluttony: 76 175 109; /* #4CAF6D */
+  --c-sin-envy: 155 111 196;    /* #9B6FC4 */
+  --c-sin-gloom: 111 184 217;   /* #6FB8D9 */
+  --c-sin-pride: 74 127 199;    /* #4A7FC7 */
+  /* Metal / brass décor ladder (pipes, rivets, coins, plates) */
+  --m-hi: 226 201 138;    /* #E2C98A highlight */
+  --m-lt: 210 176 106;    /* #D2B06A light brass */
+  --m-brass: 185 148 86;  /* #B99456 mid brass */
+  --m-mid: 138 106 47;    /* #8A6A2F dark brass */
+  --m-dk: 107 85 48;      /* #6B5530 shadowed brass */
+  --m-dkr: 92 67 24;      /* #5C4318 deepest brass */
+  --m-shadow: 42 26 14;   /* #2A1A0E pipe edge dark */
+  --m-ink: 26 17 8;       /* #1A1108 engraved plate text */
+  /* Surface decor tints used by the component kit */
+  --scan-rgb: 237 230 221; /* scanline overlay lines */
+  --tint-hi: 237 230 221;  /* inset top highlights */
+  --tint-lo: 0 0 0;        /* inset bottom shadows */
+  --steam-rgb: 237 230 221;/* steam puffs */
+}
+
+html.light {
+  color-scheme: light;
+  /* Ice-blue dossier palette — cool blue-white ground, navy ink text,
+     every accent (crimson→blue, gold→steel) and all metal décor flips
+     blue so the whole theme reads blue in light mode. */
+  --c-ink: 234 240 247;    /* #EAF0F7 ice blue */
+  --c-panel: 244 248 252;  /* #F4F8FC pale blue-white */
+  --c-border: 143 164 190; /* #8FA4BE steel blue */
+  --c-text: 17 32 51;      /* #112033 navy ink */
+  --c-muted: 84 106 132;   /* #546A84 slate */
+  --c-crimson: 37 99 235;  /* #2563EB blue accent */
+  --c-gold: 30 82 145;     /* #1E5291 deep steel blue (~7:1 on ice) */
+  /* Sin hues darkened for the light ground — keeps category color-coding
+     legible (yellow/lime/sky would vanish on near-white). */
+  --c-sin-wrath: 179 50 50;     /* #B33232 */
+  --c-sin-lust: 168 90 21;      /* #A85A15 */
+  --c-sin-sloth: 138 113 21;    /* #8A7115 */
+  --c-sin-gluttony: 38 119 74;  /* #26774A */
+  --c-sin-envy: 114 70 158;     /* #72469E */
+  --c-sin-gloom: 34 104 140;    /* #22688C */
+  --c-sin-pride: 44 86 160;     /* #2C56A0 */
+  /* Brass → steel-blue ladder */
+  --m-hi: 190 212 236;    /* #BED4EC steel highlight */
+  --m-lt: 159 186 217;    /* #9FBAD9 light steel */
+  --m-brass: 118 148 186; /* #7694BA mid steel */
+  --m-mid: 74 106 150;    /* #4A6A96 dark steel */
+  --m-dk: 58 84 122;      /* #3A547A shadowed steel */
+  --m-dkr: 40 60 92;      /* #283C5C deepest steel */
+  --m-shadow: 20 30 48;   /* #141E30 pipe edge dark */
+  --m-ink: 234 240 247;   /* plate text flips light on the steel plate */
+  --scan-rgb: 40 60 90;   /* dark blue scanlines */
+  --tint-hi: 255 255 255;
+  --tint-lo: 20 40 70;    /* cool shadows */
+  --steam-rgb: 110 130 155;/* slate steam */
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   ::selection {
-    background-color: #C8202F;
-    color: #EDE6DD;
+    background-color: rgb(var(--c-crimson));
+    color: rgb(var(--c-text));
   }
   :focus-visible {
-    outline: 2px solid #C8202F;
+    outline: 2px solid rgb(var(--c-crimson));
     outline-offset: 2px;
   }
 }
@@ -33,19 +117,19 @@
      diagonal border with no markup changes required. */
   .card {
     @apply relative p-6;
-    background-color: #3A1418;
+    background-color: rgb(var(--c-border));
     clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
   }
   .card::before {
     content: '';
     position: absolute;
     inset: 1.5px;
-    background-color: #161011;
+    background-color: rgb(var(--c-panel));
     background-image:
-      repeating-linear-gradient(180deg, rgba(237, 230, 221, 0.025) 0px, rgba(237, 230, 221, 0.025) 1px, transparent 1px, transparent 3px);
+      repeating-linear-gradient(180deg, rgb(var(--scan-rgb) / 0.025) 0px, rgb(var(--scan-rgb) / 0.025) 1px, transparent 1px, transparent 3px);
     box-shadow:
-      inset 0 1px 0 rgba(237, 230, 221, 0.05),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+      inset 0 1px 0 rgb(var(--tint-hi) / 0.05),
+      inset 0 -1px 0 rgb(var(--tint-lo) / 0.4);
     border: 1px dashed rgba(185, 148, 86, 0.3);
     clip-path: polygon(17px 0, 100% 0, 100% calc(100% - 17px), calc(100% - 17px) 100%, 0 100%, 0 17px);
     z-index: 0;
@@ -70,15 +154,15 @@
      Two-layer clip-path trick again, so it works on a single wrapping div. */
   .sinner-card {
     @apply relative p-[3px];
-    background-color: #3A1418;
+    background-color: rgb(var(--c-border));
     clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
   }
   .sinner-card-inner {
     @apply relative overflow-hidden;
-    background-color: #161011;
+    background-color: rgb(var(--c-panel));
     background-image:
-      repeating-linear-gradient(180deg, rgba(237, 230, 221, 0.025) 0px, rgba(237, 230, 221, 0.025) 1px, transparent 1px, transparent 3px);
-    box-shadow: inset 0 1px 0 rgba(237, 230, 221, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+      repeating-linear-gradient(180deg, rgb(var(--scan-rgb) / 0.025) 0px, rgb(var(--scan-rgb) / 0.025) 1px, transparent 1px, transparent 3px);
+    box-shadow: inset 0 1px 0 rgb(var(--tint-hi) / 0.05), inset 0 -1px 0 rgb(var(--tint-lo) / 0.4);
     border: 1px dashed rgba(185, 148, 86, 0.3);
     clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
   }
@@ -90,7 +174,8 @@
     aspect-ratio: 3 / 4;
   }
   .sinner-card-no {
-    @apply absolute top-2 left-2 font-mono text-[10px] text-gold tracking-widest px-1.5 py-0.5;
+    @apply absolute top-2 left-2 font-mono text-[10px] tracking-widest px-1.5 py-0.5;
+    color: #d2b06a;
     background-color: rgba(11, 9, 8, 0.75);
   }
   .sinner-card-ticket {
@@ -119,8 +204,8 @@
     height: 2px;
     background: repeating-linear-gradient(
       90deg,
-      #3A1418 0,
-      #3A1418 6px,
+      rgb(var(--c-border)) 0,
+      rgb(var(--c-border)) 6px,
       transparent 6px,
       transparent 12px
     );
@@ -133,16 +218,16 @@
   .window-frame {
     @apply relative border-2 border-border overflow-hidden;
     box-shadow:
-      inset 0 1px 0 rgba(237, 230, 221, 0.06),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.5),
-      inset 1px 0 0 rgba(237, 230, 221, 0.03),
-      inset -1px 0 0 rgba(0, 0, 0, 0.3);
+      inset 0 1px 0 rgb(var(--tint-hi) / 0.06),
+      inset 0 -1px 0 rgb(var(--tint-lo) / 0.5),
+      inset 1px 0 0 rgb(var(--tint-hi) / 0.03),
+      inset -1px 0 0 rgb(var(--tint-lo) / 0.3);
   }
   .window-frame::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 60% 55% at 50% 10%, rgba(200, 32, 47, 0.16), transparent 70%);
+    background: radial-gradient(ellipse 60% 55% at 50% 10%, rgb(var(--c-crimson) / 0.16), transparent 70%);
     pointer-events: none;
   }
   .window-frame::after {
@@ -160,7 +245,7 @@
     @apply absolute w-2 h-2 rounded-full pointer-events-none;
     background:
       radial-gradient(circle at 35% 30%, rgba(255, 240, 200, 0.55), transparent 45%),
-      radial-gradient(circle, #b99456 0%, #5c4318 75%);
+      radial-gradient(circle, rgb(var(--m-brass)) 0%, rgb(var(--m-dkr)) 75%);
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.45), 0 1px 1px rgba(0, 0, 0, 0.6);
   }
   .rivet::after {
@@ -180,10 +265,10 @@
     height: 4px;
     background: repeating-linear-gradient(
       45deg,
-      #C8202F 0,
-      #C8202F 8px,
-      #161011 8px,
-      #161011 16px
+      rgb(var(--c-crimson)) 0,
+      rgb(var(--c-crimson)) 8px,
+      rgb(var(--c-panel)) 8px,
+      rgb(var(--c-panel)) 16px
     );
   }
 
@@ -195,7 +280,7 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(200, 32, 47, 0.7) 50%,
+      rgb(var(--c-crimson) / 0.7) 50%,
       transparent 100%
     );
   }
@@ -205,7 +290,7 @@
   .paper-lines {
     background-image:
       repeating-linear-gradient(180deg, transparent 0, transparent 27px, rgba(185, 148, 86, 0.15) 27px, rgba(185, 148, 86, 0.15) 28px),
-      repeating-linear-gradient(180deg, rgba(237, 230, 221, 0.02) 0px, rgba(237, 230, 221, 0.02) 1px, transparent 1px, transparent 3px);
+      repeating-linear-gradient(180deg, rgb(var(--scan-rgb) / 0.02) 0px, rgb(var(--scan-rgb) / 0.02) 1px, transparent 1px, transparent 3px);
   }
 
   /* Dog-ear fold — a small triangular corner fold, like a worn photo
@@ -242,7 +327,7 @@
     @apply inline-flex items-center justify-center font-mono text-[10px] text-gold;
     width: 26px;
     height: 20px;
-    background: linear-gradient(180deg, rgba(237, 230, 221, 0.08) 0%, transparent 45%, rgba(0, 0, 0, 0.35) 100%), #161011;
+    background: linear-gradient(180deg, rgb(var(--tint-hi) / 0.08) 0%, transparent 45%, rgb(var(--tint-lo) / 0.35) 100%), rgb(var(--c-panel));
     border: 1px solid rgba(185, 148, 86, 0.35);
     transform: skewX(-12deg);
   }
@@ -266,8 +351,8 @@
     background-position: left center;
     background-size: 24px 16px;
     background-image:
-      radial-gradient(ellipse 9px 6px at 6px 50%, transparent 3.6px, #b99456 3.6px, #b99456 5px, transparent 5px),
-      radial-gradient(ellipse 6px 9px at 18px 50%, transparent 3.6px, #8a6a2f 3.6px, #8a6a2f 5px, transparent 5px);
+      radial-gradient(ellipse 9px 6px at 6px 50%, transparent 3.6px, rgb(var(--m-brass)) 3.6px, rgb(var(--m-brass)) 5px, transparent 5px),
+      radial-gradient(ellipse 6px 9px at 18px 50%, transparent 3.6px, rgb(var(--m-mid)) 3.6px, rgb(var(--m-mid)) 5px, transparent 5px);
   }
   .chain-rule-sm {
     height: 11px;
@@ -275,8 +360,8 @@
     background-position: left center;
     background-size: 16px 11px;
     background-image:
-      radial-gradient(ellipse 6px 4px at 4px 50%, transparent 2.3px, #b99456 2.3px, #b99456 3.3px, transparent 3.3px),
-      radial-gradient(ellipse 4px 6px at 12px 50%, transparent 2.3px, #8a6a2f 2.3px, #8a6a2f 3.3px, transparent 3.3px);
+      radial-gradient(ellipse 6px 4px at 4px 50%, transparent 2.3px, rgb(var(--m-brass)) 2.3px, rgb(var(--m-brass)) 3.3px, transparent 3.3px),
+      radial-gradient(ellipse 4px 6px at 12px 50%, transparent 2.3px, rgb(var(--m-mid)) 2.3px, rgb(var(--m-mid)) 3.3px, transparent 3.3px);
   }
   .chain-hang {
     position: absolute;
@@ -288,8 +373,8 @@
     background-position: center top;
     background-size: 11px 18px;
     background-image:
-      radial-gradient(ellipse 4.3px 6.5px at 50% 4.5px, transparent 2.4px, #b99456 2.4px, #b99456 3.4px, transparent 3.4px),
-      radial-gradient(ellipse 6.5px 4.3px at 50% 13.5px, transparent 2.4px, #8a6a2f 2.4px, #8a6a2f 3.4px, transparent 3.4px);
+      radial-gradient(ellipse 4.3px 6.5px at 50% 4.5px, transparent 2.4px, rgb(var(--m-brass)) 2.4px, rgb(var(--m-brass)) 3.4px, transparent 3.4px),
+      radial-gradient(ellipse 6.5px 4.3px at 50% 13.5px, transparent 2.4px, rgb(var(--m-mid)) 2.4px, rgb(var(--m-mid)) 3.4px, transparent 3.4px);
   }
 
   /* Brass pipe divider — a riveted horizontal pipe used as a section
@@ -297,7 +382,7 @@
   .pipe-divider {
     position: relative;
     height: 3px;
-    background: linear-gradient(90deg, transparent, #3A1418 8%, #B99456 50%, #3A1418 92%, transparent);
+    background: linear-gradient(90deg, transparent, rgb(var(--c-border)) 8%, rgb(var(--m-brass)) 50%, rgb(var(--c-border)) 92%, transparent);
   }
   .pipe-divider::before,
   .pipe-divider::after {
@@ -308,7 +393,7 @@
     height: 8px;
     border-radius: 9999px;
     transform: translateY(-50%);
-    background: radial-gradient(circle at 35% 30%, rgba(237, 230, 221, 0.4), transparent 45%), radial-gradient(circle, #B99456 0%, #6b5530 70%);
+    background: radial-gradient(circle at 35% 30%, rgb(var(--m-hi) / 0.4), transparent 45%), radial-gradient(circle, rgb(var(--m-brass)) 0%, rgb(var(--m-dk)) 70%);
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4);
   }
   .pipe-divider::before { left: calc(50% - 40px); }
@@ -319,9 +404,9 @@
   .gauge {
     position: relative;
     border-radius: 9999px;
-    background: radial-gradient(circle at 35% 30%, rgba(237, 230, 221, 0.08), transparent 55%), #161011;
-    border: 2px solid #6b5530;
-    box-shadow: inset 0 0 0 1px rgba(185, 148, 86, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    background: radial-gradient(circle at 35% 30%, rgb(var(--tint-hi) / 0.08), transparent 55%), rgb(var(--c-panel));
+    border: 2px solid rgb(var(--m-dk));
+    box-shadow: inset 0 0 0 1px rgb(var(--m-brass) / 0.3), inset 0 2px 4px rgb(var(--tint-lo) / 0.5);
   }
   .gauge::before {
     content: '';
@@ -330,7 +415,7 @@
     left: 50%;
     width: 40%;
     height: 2px;
-    background: #B99456;
+    background: rgb(var(--m-brass));
     transform-origin: left center;
     transform: translateY(-50%) rotate(var(--needle, 35deg));
     transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -343,7 +428,7 @@
     width: 4px;
     height: 4px;
     border-radius: 9999px;
-    background: #B99456;
+    background: rgb(var(--m-brass));
     transform: translate(-50%, -50%);
   }
 
@@ -355,8 +440,8 @@
     inset: 0;
     pointer-events: none;
     background-image:
-      radial-gradient(circle at 35% 30%, #e2c98a 0, #b99456 35%, #5c4318 62%, transparent 64%),
-      radial-gradient(circle at 35% 30%, #e2c98a 0, #b99456 35%, #5c4318 62%, transparent 64%);
+      radial-gradient(circle at 35% 30%, rgb(var(--m-hi)) 0, rgb(var(--m-brass)) 35%, rgb(var(--m-dkr)) 62%, transparent 64%),
+      radial-gradient(circle at 35% 30%, rgb(var(--m-hi)) 0, rgb(var(--m-brass)) 35%, rgb(var(--m-dkr)) 62%, transparent 64%);
     background-size: 8px 8px;
     background-repeat: no-repeat;
     background-position: calc(100% - 9px) 9px, 9px calc(100% - 9px);
@@ -370,13 +455,30 @@
         90deg,
         transparent 0, transparent 140px,
         rgba(0, 0, 0, 0.6) 140px, rgba(0, 0, 0, 0.6) 143px,
-        #8a6a2f 143px, #8a6a2f 149px,
+        rgb(var(--m-mid)) 143px, rgb(var(--m-mid)) 149px,
         rgba(0, 0, 0, 0.6) 149px, rgba(0, 0, 0, 0.6) 152px,
         transparent 152px, transparent 300px
       ),
-      linear-gradient(180deg, #1a0f08 0%, #6b4a26 24%, #d2b06a 48%, #8a6a2f 64%, #2a1a0e 100%);
+      linear-gradient(180deg, rgb(var(--m-shadow)) 0%, rgb(var(--m-dk)) 24%, rgb(var(--m-lt)) 48%, rgb(var(--m-mid)) 64%, rgb(var(--m-shadow)) 100%);
     border-top: 1px solid rgba(0, 0, 0, 0.8);
     border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  }
+
+  /* Vertical variant — the same brass pipe run down the sidebar's edge. */
+  .pipe-v {
+    width: 10px;
+    background:
+      repeating-linear-gradient(
+        180deg,
+        transparent 0, transparent 140px,
+        rgba(0, 0, 0, 0.6) 140px, rgba(0, 0, 0, 0.6) 143px,
+        rgb(var(--m-mid)) 143px, rgb(var(--m-mid)) 149px,
+        rgba(0, 0, 0, 0.6) 149px, rgba(0, 0, 0, 0.6) 152px,
+        transparent 152px, transparent 300px
+      ),
+      linear-gradient(90deg, rgb(var(--m-shadow)) 0%, rgb(var(--m-dk)) 24%, rgb(var(--m-lt)) 48%, rgb(var(--m-mid)) 64%, rgb(var(--m-shadow)) 100%);
+    border-left: 1px solid rgba(0, 0, 0, 0.8);
+    border-right: 1px solid rgba(0, 0, 0, 0.8);
   }
 
   /* Steam puffs venting from a pipe joint. */
@@ -386,7 +488,7 @@
     width: 12px;
     height: 12px;
     border-radius: 9999px;
-    background: rgba(237, 230, 221, 0.55);
+    background: rgb(var(--steam-rgb) / 0.55);
     filter: blur(4px);
     opacity: 0;
     pointer-events: none;
@@ -403,9 +505,9 @@
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #1a1108;
-    background: linear-gradient(180deg, #e2c98a 0%, #b99456 45%, #8a6a2f 100%);
-    border: 1px solid #3a2616;
+    color: rgb(var(--m-ink));
+    background: linear-gradient(180deg, rgb(var(--m-hi)) 0%, rgb(var(--m-brass)) 45%, rgb(var(--m-mid)) 100%);
+    border: 1px solid rgb(var(--m-shadow));
     box-shadow: inset 0 1px 0 rgba(255, 240, 200, 0.5), 0 1px 2px rgba(0, 0, 0, 0.6);
     clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
   }
@@ -444,13 +546,13 @@
       ),
       radial-gradient(
         circle var(--coin-size) / 2 at calc(var(--coin-size) / 2) calc(var(--coin-size) / 2),
-        #ecd48f 0,
-        #d2b06a calc(var(--coin-size) / 2 * 0.45),
-        #a37c36 calc(var(--coin-size) / 2 - var(--coin-rim) * 1.75),
-        #dcc27c calc(var(--coin-size) / 2 - var(--coin-rim) * 1.75),
-        #dcc27c calc(var(--coin-size) / 2 - var(--coin-rim)),
-        #6b4f22 calc(var(--coin-size) / 2 - var(--coin-rim)),
-        #5c4318 calc(var(--coin-size) / 2 - 0.5px),
+        rgb(var(--m-hi)) 0,
+        rgb(var(--m-lt)) calc(var(--coin-size) / 2 * 0.45),
+        rgb(var(--m-brass)) calc(var(--coin-size) / 2 - var(--coin-rim) * 1.75),
+        rgb(var(--m-lt)) calc(var(--coin-size) / 2 - var(--coin-rim) * 1.75),
+        rgb(var(--m-lt)) calc(var(--coin-size) / 2 - var(--coin-rim)),
+        rgb(var(--m-mid)) calc(var(--coin-size) / 2 - var(--coin-rim)),
+        rgb(var(--m-dkr)) calc(var(--coin-size) / 2 - 0.5px),
         transparent calc(var(--coin-size) / 2)
       ),
       radial-gradient(
