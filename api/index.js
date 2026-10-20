@@ -200,7 +200,7 @@ const CERTIFICATES = [
     type: 'certificate', // 'certificate' | 'seminar'
     issuer: 'John Whittle, COO',
     date: '2026',
-    image: null, // PDFs can't render as <img> — the placeholder serves as the thumbnail
+    image: '/images/certificates/certificate.jpg', // page render of the PDF — also the thumbnail
     link: '/images/certificates/certificate.pdf',
     note: 'Course completion certificate issued 10/20/26',
   },
@@ -210,7 +210,7 @@ const CERTIFICATES = [
     type: 'certificate',
     issuer: 'John Whittle, COO',
     date: '2026',
-    image: null,
+    image: '/images/certificates/certificate2.jpg',
     link: '/images/certificates/certificate2.pdf',
     note: 'Course completion certificate issued 10/20/26',
   },
