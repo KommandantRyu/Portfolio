@@ -211,6 +211,15 @@ const CERTIFICATES = [
     image: '/images/certificates/certificate2.jpg',
     link: '/images/certificates/certificate2.pdf',
     note: 'Course completion certificate issued 10/20/26',
+
+    id: 3,
+    title: 'Techtalks: Tech Aspiration, Life Lessons, and Knowledge Towards Success',
+    type: 'seminar',
+    issue: 'Sobrang Smart Solutions',
+    date: '2026',
+    image: '/images/certificates/techtalks.jpg',
+    note: 'Webinar Completion issued 9/4/2026'
+
   },
 ];
 
