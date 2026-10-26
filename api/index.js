@@ -210,8 +210,9 @@ const CERTIFICATES = [
     date: '2026',
     image: '/images/certificates/certificate2.jpg',
     link: '/images/certificates/certificate2.pdf',
-    note: 'Course completion certificate issued 10/20/26',
-
+    note: 'Course completion certificate issued 10/20/26'
+  },
+{
     id: 3,
     title: 'Techtalks: Tech Aspiration, Life Lessons, and Knowledge Towards Success',
     type: 'seminar',
