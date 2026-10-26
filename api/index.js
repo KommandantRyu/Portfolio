@@ -118,8 +118,6 @@ const SKILL_SECTIONS = [
       'Prototyping embedded systems on {Arduino} and {Raspberry Pi}, with {MQTT} for device-to-device messaging.',
     entries: [
       { name: 'Arduino', note: 'Microcontroller prototyping and sensor input.' },
-      { name: 'Raspberry Pi', note: 'Single-board computing for gateways and edge tasks.' },
-      { name: 'MQTT', note: 'Lightweight publish/subscribe messaging between devices.' },
     ],
   },
   {
