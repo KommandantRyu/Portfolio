@@ -513,6 +513,216 @@ html.light {
   }
 
   /* ===================================================================
+     E.G.O EMBLEMS — the Beyond Code selection screen (Limbus's E.G.O
+     pick row): a circular portrait in a ringed frame, a roman-numeral
+     badge on its top-right, an angled tier plate (ZAYIN…ALEPH) below,
+     and the item name under that. Each slot sets `--sin` (space-separated
+     RGB from sinColors.js) so every glow/border tints per category.
+     =================================================================== */
+  .ego-row {
+    @apply flex flex-wrap justify-center gap-x-8 gap-y-10;
+  }
+  .ego-slot {
+    @apply relative flex flex-col items-center gap-3 w-40 cursor-pointer;
+    /* keep the selection arrow from clipping against the row's top */
+    padding-top: 22px;
+    background: none;
+    border: 0;
+  }
+  /* Gold pointer above the selected slot (image 1's▼) */
+  .ego-slot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 11px solid rgb(var(--m-lt));
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 5px rgb(var(--m-brass) / 0.8));
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+  .ego-slot.is-selected::before,
+  .ego-slot:hover::before,
+  .ego-slot:focus-visible::before {
+    opacity: 1;
+  }
+
+  /* Circular portrait: outer ring, inner art, scanline gloss */
+  .ego-portrait {
+    @apply relative block p-[3px] rounded-full;
+    background: linear-gradient(
+      165deg,
+      rgb(var(--m-lt)) 0%,
+      rgb(var(--m-mid)) 38%,
+      rgb(var(--m-dkr)) 70%,
+      rgb(var(--m-shadow)) 100%
+    );
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.55),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .ego-portrait-inner {
+    @apply relative rounded-full overflow-hidden block;
+    width: 132px;
+    height: 132px;
+    background-color: rgb(var(--c-ink));
+    box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.85);
+  }
+  .ego-portrait-inner img {
+    @apply w-full h-full object-cover;
+    /* dim the unselected emblems, full brightness on the active one */
+    filter: saturate(0.55) brightness(0.72);
+    transition: filter 0.2s ease, transform 0.3s ease;
+  }
+  /* Faint gloss sweeping the top-left of the sphere */
+  .ego-portrait-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: radial-gradient(
+      ellipse 70% 45% at 32% 18%,
+      rgb(var(--tint-hi) / 0.14),
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+  .ego-slot:hover .ego-portrait-inner img,
+  .ego-slot.is-selected .ego-portrait-inner img,
+  .ego-slot:focus-visible .ego-portrait-inner img {
+    filter: saturate(1) brightness(1);
+    transform: scale(1.04);
+  }
+  .ego-slot.is-selected .ego-portrait,
+  .ego-slot:hover .ego-portrait {
+    box-shadow:
+      0 0 0 2px rgb(var(--sin, var(--m-brass)) / 0.9),
+      0 0 22px rgb(var(--sin, var(--m-brass)) / 0.45),
+      0 6px 16px rgba(0, 0, 0, 0.55);
+    transform: translateY(-3px);
+  }
+
+  /* Roman numeral badge (I…IV) on the circle's top-right */
+  .ego-roman {
+    @apply absolute font-display font-bold leading-none select-none;
+    top: -6px;
+    right: -10px;
+    font-size: 30px;
+    color: rgb(var(--m-lt));
+    text-shadow:
+      0 0 10px rgb(var(--c-sin-lust) / 0.65),
+      0 2px 3px rgba(0, 0, 0, 0.9);
+  }
+
+  /* Angled tier plate (ZAYIN / TETH / HE / WAW / ALEPH) */
+  .ego-tier {
+    @apply font-display font-bold text-sm tracking-wider uppercase px-4 py-1;
+    color: rgb(var(--sin, var(--m-lt)));
+    background:
+      linear-gradient(180deg, rgb(var(--tint-hi) / 0.1) 0%, transparent 45%, rgb(var(--tint-lo) / 0.4) 100%),
+      rgb(var(--c-panel));
+    border: 1px solid rgb(var(--sin, var(--m-brass)) / 0.75);
+    clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .ego-name {
+    @apply font-display font-semibold text-sm text-text text-center leading-tight;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
+  }
+
+  /* ===================================================================
+     E.G.O DETAIL — the "inside" screen: a big circular portrait on the
+     left with a stat strip under it, and a title / tab / entries panel
+     on the right (image 2's layout).
+     =================================================================== */
+  .ego-detail-art {
+    @apply relative mx-auto rounded-full p-[5px];
+    max-width: 420px;
+    aspect-ratio: 1;
+    background: linear-gradient(
+      150deg,
+      rgb(var(--m-lt)) 0%,
+      rgb(var(--m-mid)) 40%,
+      rgb(var(--m-dkr)) 72%,
+      rgb(var(--m-shadow)) 100%
+    );
+    box-shadow:
+      0 0 44px rgb(var(--sin, var(--m-brass)) / 0.28),
+      0 14px 34px rgba(0, 0, 0, 0.6),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  }
+  .ego-detail-art-inner {
+    @apply w-full h-full rounded-full overflow-hidden relative;
+    background: rgb(var(--c-ink));
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
+  }
+  .ego-detail-art-inner img {
+    @apply w-full h-full object-cover;
+  }
+  .ego-detail-art-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: radial-gradient(
+      ellipse 75% 45% at 30% 15%,
+      rgb(var(--tint-hi) / 0.12),
+      transparent 62%
+    );
+    pointer-events: none;
+  }
+
+  /* Title banner behind the category name on the detail screen */
+  .ego-title-banner {
+    @apply inline-block font-display font-bold px-4 py-1.5;
+    color: rgb(var(--c-text));
+    background: linear-gradient(90deg, rgb(var(--sin, var(--c-crimson)) / 0.85), rgb(var(--sin, var(--c-crimson)) / 0.15));
+    clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
+  }
+
+  /* Tab strip (Summary / Entries) — angled buttons like Limbus's
+     Summary / Skill / E.G.O tabs */
+  .ego-tab {
+    @apply font-display font-semibold text-sm px-5 py-2 transition-colors;
+    color: rgb(var(--c-muted));
+    background: rgb(var(--c-panel));
+    border: 1px solid rgb(var(--c-border));
+    clip-path: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px);
+  }
+  .ego-tab:hover {
+    color: rgb(var(--c-text));
+    border-color: rgb(var(--m-brass) / 0.6);
+  }
+  .ego-tab.is-active {
+    color: rgb(var(--m-ink));
+    background: linear-gradient(180deg, rgb(var(--m-hi)) 0%, rgb(var(--m-brass)) 55%, rgb(var(--m-mid)) 100%);
+    border-color: rgb(var(--m-shadow));
+    box-shadow: 0 0 14px rgb(var(--sin, var(--m-brass)) / 0.4);
+  }
+
+  /* Stat chip under the detail art (entries / sin / tier) */
+  .ego-stat {
+    @apply flex flex-col items-center gap-0.5 px-4 py-2 min-w-[84px];
+    background: rgb(var(--c-panel));
+    border: 1px solid rgb(var(--c-border));
+    clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+  }
+  .ego-stat dt {
+    @apply font-mono text-[9px] tracking-widest uppercase text-muted;
+  }
+  .ego-stat dd {
+    @apply font-display font-bold text-lg;
+    color: rgb(var(--sin, var(--m-lt)));
+  }
+
+  /* ===================================================================
      COINS — painted entirely from the --coins custom property, so a
      whole row of pips is one element (set by Coins.jsx), not one DOM
      node per coin. Change how many coins something shows by editing

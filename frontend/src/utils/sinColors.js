@@ -20,3 +20,23 @@ export const DEFAULT_SIN_COLOR = {
 export function sinColor(sin) {
   return SIN_COLORS[sin] || DEFAULT_SIN_COLOR
 }
+
+// Space-separated RGB channels for each sin hue (mirrors the --c-sin-* vars
+// in index.css). Exposed so components can hand a raw value to CSS via a
+// custom property, e.g. style={{ '--sin': sinRgb(cat.sin) }} — then rules
+// like box-shadow: 0 0 20px rgb(var(--sin) / 0.5) can be tinted per item.
+export const SIN_RGB = {
+  wrath: '214 69 69',
+  lust: '224 136 48',
+  sloth: '212 178 60',
+  gluttony: '76 175 109',
+  envy: '155 111 196',
+  gloom: '111 184 217',
+  pride: '74 127 199',
+}
+
+export const DEFAULT_SIN_RGB = '143 127 119'
+
+export function sinRgb(sin) {
+  return SIN_RGB[sin] || DEFAULT_SIN_RGB
+}

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import PageHeader from '../components/PageHeader.jsx'
+import EgoEmblem from '../components/EgoEmblem.jsx'
 import { apiUrl } from '../api.js'
-import { sinColor } from '../utils/sinColors.js'
 
 export default function BeyondCodeHub() {
   const [categories, setCategories] = useState([])
   const [status, setStatus] = useState('loading') // loading | ready | error
+  const [selected, setSelected] = useState(0)
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch(apiUrl('/api/beyond-code'))
@@ -21,8 +23,26 @@ export default function BeyondCodeHub() {
       .catch(() => setStatus('error'))
   }, [])
 
+  // Keyboard: ←/→ move the selection across the row. Enter is handled
+  // natively by each emblem <button>, so focusing one and pressing
+  // Enter opens it; these handlers make the row feel like a game menu
+  // when nothing in particular is focused.
+  function handleKeyDown(e) {
+    if (status !== 'ready' || categories.length === 0) return
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault()
+      const dir = e.key === 'ArrowRight' ? 1 : -1
+      setSelected((i) => (i + dir + categories.length) % categories.length)
+    }
+  }
+
+  function openCategory(index) {
+    const cat = categories[index]
+    if (cat) navigate(`/beyond-code/${cat.slug}`)
+  }
+
   return (
-    <section>
+    <section onKeyDown={handleKeyDown}>
       <PageHeader
         eyebrow="beyond code"
         title="What I do outside of coding"
@@ -43,32 +63,24 @@ export default function BeyondCodeHub() {
       )}
 
       {status === 'ready' && (
-        <div className="grid sm:grid-cols-2 gap-4">
-          {categories.map((cat, i) => {
-            const color = sinColor(cat.sin)
-            return (
-              <Link
-                key={cat.slug}
-                to={`/beyond-code/${cat.slug}`}
-                className={`notch flex items-center gap-4 border ${color.border} bg-panel/40 hover:bg-panel/70 transition-colors p-5`}
-              >
-                <span className="tab-num shrink-0">
-                  <span>{String(i + 1).padStart(2, '0')}</span>
-                </span>
-                <span className="text-2xl" aria-hidden="true">{cat.emoji}</span>
-                <div className="min-w-0 flex-1">
-                  <p className={`font-display text-lg font-semibold ${color.text}`}>
-                    {cat.title}
-                  </p>
-                  <p className="font-mono text-[10px] text-muted tracking-widest uppercase mt-0.5">
-                    sin: {cat.sin}
-                  </p>
-                </div>
-                <span className={`${color.text} text-lg`}>→</span>
-              </Link>
-            )
-          })}
+        <div className="ego-row mt-2">
+          {categories.map((cat, i) => (
+            <EgoEmblem
+              key={cat.slug}
+              category={cat}
+              index={i}
+              selected={selected === i}
+              onSelect={() => setSelected(i)}
+              onActivate={() => openCategory(i)}
+            />
+          ))}
         </div>
+      )}
+
+      {status === 'ready' && categories.length > 0 && (
+        <p className="mt-12 text-center font-mono text-[10px] text-muted tracking-widest uppercase">
+          ← → to browse · click to open
+        </p>
       )}
     </section>
   )

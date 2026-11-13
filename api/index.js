@@ -134,12 +134,18 @@ const SKILL_SECTIONS = [
   },
 ];
 
+// Beyond Code categories drive the E.G.O-style selection screen. `tier`
+// (ZAYIN → ALEPH) and `cover` (circular emblem / detail-screen art) are
+// hand-picked here; missing cover files fall back to placeholder.svg on
+// the frontend.
 const BEYOND_CODE = [
   {
     slug: 'foods',
     title: 'Foods',
     emoji: '🍜',
     sin: 'gluttony',
+    tier: 'TETH',
+    cover: '/images/beyond-code/foods/bacon-cheese-burger.jpg',
     detailLabel: 'restaurant',
     items: [
       { name: 'Bacon Cheese Burgers', image: '/images/beyond-code/foods/bacon-cheese-burger.jpg', detail: 'Anywhere that piles on crispy bacon — greasy, no regrets' },
@@ -152,6 +158,8 @@ const BEYOND_CODE = [
     title: 'Games',
     emoji: '🎮',
     sin: 'wrath',
+    tier: 'HE',
+    cover: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1973530/header.jpg',
     detailLabel: 'achievement',
     // Steam CDN artwork — /steam/apps/{appid}/header.jpg
     items: [
@@ -165,6 +173,8 @@ const BEYOND_CODE = [
     title: 'Shows',
     emoji: '🎬',
     sin: 'sloth',
+    tier: 'ZAYIN',
+    cover: '/images/beyond-code/shows/avengers-assemble.jpg',
     detailLabel: 'why I like it',
     items: [
       { name: 'The Avengers Assemble', image: '/images/beyond-code/shows/avengers-assemble.jpg', detail: 'The team-up that kicked off the MCU — pure blockbuster comfort' },
@@ -177,6 +187,8 @@ const BEYOND_CODE = [
     title: 'Other hobbies',
     emoji: '📖',
     sin: 'pride',
+    tier: 'WAW',
+    cover: '/images/beyond-code/other-hobbies/fencing.jpg',
     detailLabel: 'specifics',
     items: [
       { name: 'Fencing', image: '/images/beyond-code/other-hobbies/fencing.jpg', detail: 'Recreational — footwork drills and friendly bouts' },
@@ -219,8 +231,8 @@ const CERTIFICATES = [
     issuer: 'Sobrang Smart Solutions',
     date: '2026',
     image: '/images/certificates/techtalks.jpg',
+    link: '/images/certificates/techtalks.pdf',
     note: 'Webinar Completion issued 9/4/2026'
-
   },
 ];
 
