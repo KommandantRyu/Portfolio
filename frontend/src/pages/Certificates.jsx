@@ -33,11 +33,7 @@ export default function Certificates() {
 
   return (
     <section>
-      <PageHeader
-        eyebrow="certificates & seminars"
-        title="Papers I've earned"
-        description="Certificates completed and seminars attended — pulled live from the Express API — edit api/index.js to add your own."
-      />
+      
 
       {status === 'loading' && (
         <p className="text-muted">Loading credentials…</p>
